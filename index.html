@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EHT Water Tanks</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EHT Water Tanks</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Google Font -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
 
-    <style>
+        <style>
         :root {
             --primary: #0b3c6f;
             --secondary: #e21f26;
@@ -182,74 +184,48 @@
             opacity: .7
         }
 
-        /* ===== WHY US ===== */
-        /* FEATURE CARD */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 28px;
+        /* ===== WHY US (redesigned) ===== */
+        .why-grid{ display:grid; grid-template-columns: 1fr 420px; gap:32px; align-items:start; }
+
+        .why-features{ display:grid; gap:14px; }
+        /* Use light cards for feature rows so text is readable on white pages */
+        .feature.compact{ display:flex; gap:16px; align-items:center; background:#f8fafc; padding:14px 12px; border-radius:12px; }
+        .feature.compact .feature-icon{ width:56px; height:56px; border-radius:10px; background:linear-gradient(135deg,#0b3c6f,#052a4d); display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; }
+        .feature.compact .feature-icon::after{ display:block; line-height:1; }
+        .feature.compact .feature-text h4{ margin:0 0 6px; color:var(--dark); font-size:16px; }
+        .feature.compact .feature-text p{ margin:0; color:rgba(15,28,46,0.78); font-size:14px; }
+
+        /* Make the trust panel a clear card with dark text for readability */
+        .why-panel{ background:#ffffff; padding:20px; border-radius:14px; box-shadow:0 18px 50px rgba(11,60,111,0.06); color:var(--dark); }
+        .why-panel .trust-line{ display:flex; gap:14px; align-items:center; }
+        .trust-logo{ font-size:20px; background:var(--primary); color:#fff; padding:10px; border-radius:12px; width:48px; height:48px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,0,0,0.08); }
+
+        .stats-grid-compact{ display:flex; gap:12px; margin-top:18px; }
+        .stat-item{ flex:1; background:#f6f8fa; padding:12px; border-radius:10px; text-align:center; }
+        .stat-num{ font-size:22px; font-weight:800; color:var(--secondary); }
+        .stat-label{ font-size:12px; color:rgba(15,28,46,0.7); margin-top:6px; }
+
+        .why-cta{ margin-top:18px; display:flex; gap:10px; }
+        .why-cta .btn { padding:10px 16px; }
+        .small-note{ margin-top:10px; font-size:13px; color:rgba(15,28,46,0.6); }
+
+        /* entry animations */
+        .fade-up{ opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.4,0,.2,1); }
+        .fade-up.show{ opacity:1; transform:none; }
+
+        
+
+        /* Responsive */
+        @media(max-width:900px){
+            .why-grid{ grid-template-columns:1fr; }
+            .why-features{ order:1; }
+            .why-panel{ order:2; }
+
+            .feature.compact{ padding:12px; }
+            .feature.compact .feature-icon{ width:48px; height:48px; font-size:18px; }
+            .why-panel{ margin-top:14px; }
         }
 
-        .feature {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
-            text-align: center;
-            transition: .35s cubic-bezier(.4, 0, .2, 1);
-        }
-
-        .feature:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 22px 45px rgba(0, 0, 0, .12);
-        }
-
-        /* ICON */
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0b3c6f, #052a4d);
-            position: relative;
-        }
-
-        /* ICON SYMBOLS */
-        .feature-icon::after {
-            font-size: 28px;
-            color: #fff;
-        }
-
-        .feature-icon.cert::after {
-            content: "✔";
-        }
-
-        .feature-icon.weather::after {
-            content: "☀";
-        }
-
-        .feature-icon.engineering::after {
-            content: "⚙";
-        }
-
-        .feature-icon.custom::after {
-            content: "🛠";
-        }
-
-        /* TEXT */
-        .feature h4 {
-            margin-bottom: 10px;
-            color: #0b3c6f;
-            font-size: 18px;
-        }
-
-        .feature p {
-            font-size: 14px;
-            opacity: .8;
-        }
 
         /* SCROLL FADE (smooth) */
         .fade {
@@ -387,85 +363,111 @@
             }
         }
 
-        /* ===== GLOBAL PRESENCE ===== */
-        .global {
-            background: #f4f7fb;
-        }
+       /* ===== DISTRIBUTORS SECTION ===== */
+.global {
+    background: #f4f7fb;
+    padding: 80px 0;
+}
 
-        .global .section-title span {
-            color: var(--primary);
-        }
+.global .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
 
-        .global-grid {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 40px;
-            align-items: stretch;
-        }
+.global .section-title h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
 
-        /* MAP */
-        .map-box {
-            background: #eaf3ff;
-            padding: 20px;
-            border-radius: 20px;
-        }
+.global .section-title p {
+    font-size: 16px;
+    color: #666;
+}
 
-        #worldMap {
-            width: 100%;
-            height: 360px;
-            border-radius: 15px;
-        }
+/* GRID LAYOUT */
+.global-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+}
 
-        .map-note {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 14px;
-            opacity: .7;
-        }
+/* MAP BOX */
+.map-box {
+    background: #eaf3ff;
+    padding: 20px;
+    border-radius: 20px;
+}
 
-        /* LOCATIONS */
-        .locations {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+#worldMap {
+    width: 100%;
+    height: 360px;
+    border-radius: 15px;
+}
 
-        .location {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-            transition: .3s;
-        }
+.map-note {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 14px;
+    opacity: 0.7;
+}
 
-        .location:hover {
-            transform: translateY(-6px);
-        }
+/* DISTRIBUTOR CARDS */
+.locations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
 
-        .location h4 {
-            margin-bottom: 6px;
-            font-size: 16px;
-        }
+.location {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
 
-        .location p {
-            font-size: 14px;
-            opacity: .7;
-        }
+.location:hover {
+    transform: translateY(-6px);
+}
 
-        .location.red {
-            border-left: 4px solid #e21f26;
-        }
+/* CARD TEXT */
+.location h4 {
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 600;
+}
 
-        .location.blue {
-            border-left: 4px solid var(--primary);
-        }
+.location p {
+    font-size: 14px;
+    opacity: 0.75;
+}
 
-        /* Responsive */
-        @media(max-width:900px) {
-            .global-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+/* COLOR ACCENTS */
+.location.red {
+    border-left: 4px solid #e21f26;
+}
+
+.location.blue {
+    border-left: 4px solid var(--primary);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .global-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #worldMap {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .locations {
+        grid-template-columns: 1fr;
+    }
+}
 
 
         /* ===== PROJECTS ===== */
@@ -640,16 +642,7 @@
             position: relative;
         }
 
-        .content-box::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 30px;
-            bottom: 30px;
-            width: 4px;
-            background: var(--primary);
-            border-radius: 4px;
-        }
+  
 
         .content-box h4 {
             margin-bottom: 10px;
@@ -669,13 +662,11 @@
 
         .content-box ul li {
             font-size: 14px;
-            padding-left: 20px;
             margin-bottom: 6px;
             position: relative;
         }
 
         .content-box ul li::before {
-            content: '✔';
             position: absolute;
             left: 0;
             color: var(--secondary);
@@ -737,33 +728,7 @@
             opacity: .9;
         }
 
-        /* ICONS */
-        .icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, .12);
-            font-size: 18px;
-        }
 
-        .icon.phone::before {
-            content: "📞";
-        }
-
-        .icon.whatsapp::before {
-            content: "💬";
-        }
-
-        .icon.email::before {
-            content: "✉️";
-        }
-
-        .icon.location::before {
-            content: "📍";
-        }
 
         /* FORM */
         .contact-form {
@@ -1344,424 +1309,1637 @@
   }
 }
 
-    </style>
-</head>
-<!-- Leaflet CSS & JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+/* ===== PAGE LOADER ===== */
+#page-loader{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#062b4f,#0b3c6f);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+  transition:opacity .8s ease, visibility .8s ease;
+}
 
-<body>
+#page-loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
 
-    <header id="header">
-        <div class="container nav">
-            <div class="logo" style="font-weight:700;">EHT <span>WATER TANKS</span></div>
-            
-            <div class="menu" onclick="toggleMenu()">☰</div>
-            <ul id="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </header>
+/* CONTENT */
+.loader-content{
+  text-align:center;
+  color:#fff;
+  animation:fadeScale .9s ease;
+}
 
-  <section class="hero">
+.loader-content h1{
+  font-size:34px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.loader-content h1 span{
+  color:#e21f26;
+}
+
+.loader-content p{
+  font-size:16px;
+  opacity:.9;
+  margin-bottom:35px;
+}
+
+/* LOADING LINE */
+.loader-line{
+  width:220px;
+  height:4px;
+  background:rgba(255,255,255,.25);
+  border-radius:20px;
+  overflow:hidden;
+  margin:auto;
+}
+
+.loader-line span{
+  display:block;
+  width:40%;
+  height:100%;
+  background:#e21f26;
+  border-radius:20px;
+  animation:loadingLine 1.6s infinite ease-in-out;
+}
+
+/* ANIMATIONS */
+@keyframes loadingLine{
+  0%{ transform:translateX(-100%); }
+  50%{ transform:translateX(100%); }
+  100%{ transform:translateX(100%); }
+}
+
+@keyframes fadeScale{
+  from{
+    opacity:0;
+    transform:scale(.92);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .loader-content h1{ font-size:26px; }
+  .loader-content p{ font-size:14px; }
+}
+
+        /* --- HERO REDESIGN: improved responsive layout --- */
+        .container.hero-content{ max-width:1100px; }
+
+        .hero-grid{
+            display:flex;
+            gap:36px;
+            align-items:center;
+            justify-content:space-between;
+            width:100%;
+            padding:36px 0;
+        }
+
+        .hero-copy{ flex:1 1 56%; min-width:280px; padding-right:18px; }
+        .hero-media{ flex:0 0 380px; display:flex; flex-direction:column; align-items:center; gap:18px; }
+
+        .hero-badge{ display:inline-block; background:rgba(226,31,38,0.12); color:var(--secondary); padding:8px 12px; border-radius:999px; font-weight:700; margin-bottom:14px; }
+
+        .hero-copy h1{ font-size:44px; margin-bottom:12px; line-height:1.15; }
+        .hero-copy h1 span{ display:block; color:#fff; }
+
+        .lead{ font-size:18px; margin-bottom:14px; color:rgba(255,255,255,0.95); }
+
+        .ad-line{ margin-bottom:12px; color:rgba(255,255,255,0.95); }
+
+        .benefits-list{ list-style:none; padding-left:0; margin:18px 0; color:rgba(255,255,255,0.95); }
+        .benefits-list li{ position:relative; padding-left:22px; margin-bottom:8px; }
+
+        .hero-media .media-wrap{ width:100%; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.25); }
+        .hero-media img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:12px; }
+
+        .promo-pill{ margin-top:8px; background:rgba(255,255,255,0.12); padding:8px 14px; border-radius:999px; color:#fff; font-weight:600; }
+
+        .hero-legal{ margin-top:10px; font-size:13px; opacity:0.85; }
+
+        /* Typewriter */
+        .typewriter{ color:var(--secondary); font-weight:800; position:relative; }
+        .typewriter::after{ content:''; display:inline-block; width:2px; height:1.1em; background:#fff; margin-left:8px; animation:blink 1s step-end infinite; vertical-align:middle; }
+        @keyframes blink{ 50%{ opacity:0 } }
+
+        /* CTA pulse */
+        .cta-quote{ box-shadow:0 12px 30px rgba(226,31,38,0.28); }
+        .cta-quote.pulse{ animation:pulse 1.6s infinite; }
+        @keyframes pulse{ 0%{ transform:scale(1) }50%{ transform:scale(1.03) }100%{ transform:scale(1) } }
+
+        /* Medium screens */
+        @media(max-width:1100px){
+            .hero-grid{ gap:24px; }
+            .hero-media{ flex:0 0 340px; }
+            .hero-copy h1{ font-size:40px; }
+        }
+
+        /* Tablet / small laptop -> stack columns */
+        @media(max-width:900px){
+            .hero-grid{ flex-direction:column; align-items:flex-start; padding:28px 0; }
+            .hero-media{ order:-1; width:100%; flex:0 0 auto; }
+            .hero-media img{ height:220px; }
+            .hero-copy{ width:100%; padding-right:0; }
+            .hero{ padding:100px 20px 60px; }
+            .hero-copy h1{ font-size:34px; }
+            .hero-actions{ flex-direction:column; align-items:flex-start; gap:12px; }
+            .btn{ width:auto; }
+        }
+
+        /* Mobile */
+        @media(max-width:480px){
+            .hero-copy h1{ font-size:28px; }
+            .hero-media img{ height:160px; }
+            .hero{ padding:110px 16px 60px; }
+            .hero-badge{ font-size:12px; }
+            .typewriter::after{ height:1em; }
+            .benefits-list li{ font-size:14px; }
+            .hero-legal{ font-size:12px; }
+            .btn{ width:100%; }
+        }
+
+        /* ===== FOOTER BASE ===== */
+.site-footer{
+  position:relative;
+  background:#0f1c2e;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* Animated Water Layer */
+.footer-water{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.05) 25%,
+      rgba(255,255,255,0.12) 37%,
+      rgba(255,255,255,0.05) 63%
+    );
+  background-size:200% 100%;
+  animation:waterFlow 12s linear infinite;
+  opacity:0.35;
+  pointer-events:none;
+}
+
+/* Water movement */
+@keyframes waterFlow{
+  0%{ background-position:0% 50%; }
+  100%{ background-position:200% 50%; }
+}
+
+/* CONTENT */
+.footer-container{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:auto;
+  padding:70px 20px 40px;
+  display:grid;
+  grid-template-columns:2fr 1fr 1.2fr;
+  gap:50px;
+  text-align:left;
+}
+
+/* BRAND */
+.footer-brand img{
+  max-width:150px;
+  margin-bottom:15px;
+}
+
+.footer-brand p{
+  font-size:14px;
+  line-height:1.7;
+  opacity:.85;
+}
+
+/* LINKS & CONTACT */
+.footer-links h4,
+.footer-contact h4{
+  margin-bottom:16px;
+  font-size:16px;
+  font-weight:600;
+  color:#ffffff;
+}
+
+.footer-links a{
+  display:block;
+  font-size:14px;
+  color:#fff;
+  opacity:.8;
+  margin-bottom:10px;
+  transition:.3s;
+}
+
+.footer-links a:hover{
+  color:#e21f26;
+  opacity:1;
+}
+
+.footer-contact p{
+  font-size:14px;
+  margin-bottom:10px;
+  opacity:.85;
+}
+
+/* BOTTOM BAR */
+.footer-bottom{
+  position:relative;
+  z-index:2;
+  border-top:1px solid rgba(255,255,255,.15);
+  padding:15px 20px;
+  font-size:13px;
+  opacity:.8;
+  text-align:left;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+}
+
+
+/* ===== CHATBOT ===== */
+#chatbot{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:320px;
+  max-height:460px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transform:scale(0);
+  opacity:0;
+  transition:.35s ease;
+  z-index:10000;
+}
+
+#chatbot.active{
+  transform:scale(1);
+  opacity:1;
+}
+
+/* Header */
+.chatbot-header{
+  background:linear-gradient(135deg,#0b3c6f,#062b4f);
+  color:#fff;
+  padding:14px 16px;
+  font-weight:600;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.chatbot-header button{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* Body */
+.chatbot-body{
+  padding:16px;
+  flex:1;
+  overflow-y:auto;
+  background:#f7fafc;
+}
+
+.bot-msg{
+  background:#0b3c6f;
+  color:#fff;
+  padding:12px 14px;
+  border-radius:14px 14px 14px 0;
+  font-size:14px;
+  margin-bottom:12px;
+  animation:fadeIn .4s ease;
+}
+
+.user-msg{
+  background:#e21f26;
+  color:#fff;
+  padding:12px 14px;
+  border-radius:14px 14px 0 14px;
+  font-size:14px;
+  margin-bottom:12px;
+  text-align:right;
+  animation:fadeIn .4s ease;
+}
+
+/* Footer */
+.chatbot-footer{
+  display:flex;
+  border-top:1px solid #eee;
+}
+
+.chatbot-footer input{
+  flex:1;
+  padding:12px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+.chatbot-footer button{
+  background:#e21f26;
+  color:#fff;
+  border:none;
+  padding:0 18px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* Floating Button */
+.chatbot-launcher{
+  position:fixed;
+  bottom:25px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#e21f26;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  cursor:pointer;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+  animation:pulseChat 2s infinite;
+  z-index:9999;
+}
+
+/* Animations */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(8px)}
+  to{opacity:1; transform:none}
+}
+
+@keyframes pulseChat{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+/* Mobile */
+@media(max-width:480px){
+  #chatbot{
+    width:92%;
+    right:4%;
+  }
+}
+
+@media (max-width: 768px) {
+    div[style*="left:15px"] {
+        bottom: 65px;
+        gap: 8px;
+    }
+}
+
+.location h4 i{
+  color:#0b3c6f;
+  margin-right:6px;
+}
+
+.location p i{
+  color:#e21f26;
+  margin-right:6px;
+}
+
+.map-note i{
+  color:#0b3c6f;
+  margin-right:6px;
+}
+
+.section-title h2 i{
+  vertical-align:middle;
+}
+
+.cert-year{
+  min-width:64px;
+  height:64px;
+  border-radius:50%;
+  background:#0b3c6f;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
+
+.cert-year i{
+  color:#fff;
+}
+
+.cert-header h2 i{
+  vertical-align:middle;
+}
+
+.contact-info h3{
+  font-size:28px;
+  margin-bottom:30px;
+  display:flex;
+  align-items:center;
+}
+
+.info-item{
+  display:flex;
+  gap:16px;
+  margin-bottom:22px;
+}
+
+.icon{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.15);
+  font-size:18px;
+  color:#fff;
+  flex-shrink:0;
+}
+
+.icon.whatsapp{
+  background:rgba(37,211,102,0.25);
+}
+
+.contact-form button i{
+  margin-right:6px;
+}
+
+.qr-header h2 i{
+  vertical-align:middle;
+}
+
+.qr-card h4 i{
+  color:#0b3c6f;
+  margin-right:6px;
+}
+
+.qr-card span i{
+  color:#e21f26;
+  margin-right:6px;
+}
+
+
+.footer-links h4 i,
+.footer-contact h4 i{
+  margin-right:8px;
+  color:#e21f26;
+}
+
+.footer-links a i{
+  margin-right:8px;
+  color:#ffffff;
+  opacity:0.8;
+}
+
+.footer-contact p i{
+  margin-right:8px;
+  color:#e21f26;
+}
+
+.chatbot-header i{
+  margin-right:6px;
+}
+
+.chatbot-launcher i{
+  font-size:24px;
+}
+
+/* PAGE LOADER */
+#page-loader{
+    position:fixed;
+    inset:0;
+    background:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.loader-content{
+    text-align:center;
+}
+
+/* Flaticon */
+.loader-icon i{
+    font-size:60px;
+    color:#0b3c6f;
+    margin-bottom:18px;
+    animation:pulse 1.6s infinite ease-in-out;
+}
+
+/* Text */
+.loader-content h1{
+    font-size:26px;
+    font-weight:700;
+    color:#0b3c6f;
+}
+
+.loader-content h1 span{
+    color:#e21f26;
+}
+
+.loader-content p{
+    margin-top:6px;
+    font-size:14px;
+    color:#555;
+    letter-spacing:.4px;
+}
+
+/* Loading line */
+.loader-line{
+    width:200px;
+    height:4px;
+    background:#eaeaea;
+    border-radius:10px;
+    margin:26px auto 0;
+    overflow:hidden;
+}
+
+.loader-line span{
+    display:block;
+    height:100%;
+    width:40%;
+    background:#0b3c6f;
+    animation:loading 1.4s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes loading{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(250%)}
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.1)}
+}
+
+/* Loader Icon */
+.loader-icon{
+  font-size:56px;
+  color:#e21f26;
+  margin-bottom:18px;
+  animation:waterBounce 1.8s infinite ease-in-out;
+}
+
+.loader-icon i{
+  display:inline-block;
+}
+
+/* Subtle bounce animation */
+@keyframes waterBounce{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+
+.menu i{
+  font-size:24px;
+  color:#0b3c6f;
+}
+
+.nav ul li a i{
+  margin-right:8px;
+  font-size:14px;
+  color:#0b3c6f;
+}
+
+/* Mobile menu icons alignment */
+@media(max-width:768px){
+  .nav ul li a{
+    display:flex;
+    align-items:center;
+  }
+}
+
+.hero h1 i{
+  vertical-align:middle;
+}
+
+.lead i,
+.ad-line i{
+  vertical-align:middle;
+}
+
+.benefits-list li i{
+  color:#e21f26;
+  margin-right:8px;
+}
+
+.hero-actions a i{
+  margin-right:8px;
+}
+
+.promo-pill i{
+  margin-right:6px;
+  color:#ffffff;
+}
+
+.stat-icon{
+  width:56px;
+  height:56px;
+  margin:0 auto 12px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:#ffffff;
+}
+
+.stat p{
+  margin-top:6px;
+  opacity:0.9;
+}
+
+/* ===== FOOTER BASE ===== */
+.site-footer {
+  position: relative;
+  background: linear-gradient(180deg, #0b1f35, #081726);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ===== WATER WAVES ===== */
+.footer-water {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 120px;
+  background: url("https://svgshare.com/i/13vR.svg") repeat-x;
+  opacity: 0.15; /* light transparency */
+  animation: waveMove 18s linear infinite;
+}
+
+@keyframes waveMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== FOOTER CONTENT ===== */
+.footer-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== FOOTER BOTTOM CENTER FIX ===== */
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 18px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.footer-bottom .dev-credit {
+  display: block;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width: 768px) {
+  .footer-bottom {
+    font-size: 13px;
+  }
+}
+
+/* ===== FOOTER BASE ===== */
+.site-footer {
+  position: relative;
+  background: linear-gradient(180deg, #0b1f35 0%, #081726 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* ===== SUBTLE WATER WAVES ===== */
+.footer-water {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 90px;
+  background: url("https://svgshare.com/i/13vR.svg") repeat-x;
+  opacity: 0.12;           /* VERY light */
+  animation: waveFloat 22s linear infinite;
+}
+
+/* Soft slow movement */
+@keyframes waveFloat {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Keep content above waves */
+.footer-container,
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== FOOTER BOTTOM CENTER ===== */
+.footer-bottom {
+  text-align: center;
+  padding: 18px 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 14px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-bottom .dev-credit {
+  display: block;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .footer-water {
+    height: 70px;
+  }
+}
+
+
+
+        </style>
+    </head>
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet"
+ href="https://cdn-uicons.flaticon.com/2.4.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+
+
+    <body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-content">
+
+    <!-- Flaticon Water Icon -->
+    <div class="loader-icon">
+      <i class="fi fi-rr-water"></i>
+    </div>
+
+    <h1>Welcome to <span>EHT Water Tanks</span></h1>
+    <p>Where Quality Meets Capacity</p>
+
+    <div class="loader-line">
+      <span></span>
+    </div>
+
+  </div>
+</div>
+
+
+
+      <header id="header">
+  <div class="container nav">
+
+    <!-- Logo -->
+    <div class="logo" style="font-weight:700;">
+      EHT <span>WATER TANKS</span>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="menu" onclick="toggleMenu()" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- Navigation -->
+    <ul id="menu">
+      <li>
+        <a href="#">
+          <i class="fa-solid fa-house"></i> Home
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-solid fa-circle-info"></i> About
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-solid fa-box"></i> Products
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-solid fa-briefcase"></i> Projects
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-solid fa-envelope"></i> Contact
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</header>
+
+
+<section class="hero" id="hero">
   <div class="container hero-content fade">
-    <h1>
-      Global Leader in <br>
-      <span>GRP & Industrial Water Tank Solutions</span>
-    </h1>
+    <div class="hero-grid">
 
-    <p>
-      Delivering premium water storage systems trusted across
-      50+ countries since 1987.
-    </p>
+      <!-- LEFT CONTENT -->
+      <div class="hero-copy">
 
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">Get Free Quote</a>
-      <a href="#products" class="btn btn-outline">View Products</a>
+        <h1>
+       
+          Global Leader in
+          <span>GRP & Industrial Water Tank Solutions</span>
+        </h1>
+
+        <p class="lead">
+          <i class="fa-solid fa-globe"
+             style="color:#e21f26;margin-right:6px;"></i>
+          Delivering premium water storage systems trusted across
+          50+ countries since 1987.
+        </p>
+
+        <p class="ad-line">
+          <i class="fa-solid fa-circle-check"
+             style="color:#e21f26;margin-right:6px;"></i>
+          Why Choose Our EHT Water Tanks?
+          <strong class="typewriter"
+            data-words='["WRAS & NSF Certified","Corrosion-Resistant","Global Support"]'></strong>
+        </p>
+
+        <ul class="benefits-list">
+          <li>
+            <i class="fa-solid fa-shield-halved"></i>
+            Corrosion-resistant materials for safe potable storage
+          </li>
+          <li>
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            Custom sizes, quick installation & global support
+          </li>
+        </ul>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary cta-quote" aria-label="Get a free quote">
+            <i class="fa-solid fa-file-signature"></i>
+            Get Free Quote
+          </a>
+          <a href="#products" class="btn btn-outline" id="specBtn" aria-label="Request product specs">
+            <i class="fa-solid fa-file-lines"></i>
+            Request Specs
+          </a>
+        </div>
+
+      </div>
+
+      <!-- RIGHT MEDIA -->
+      <div class="hero-media">
+        <div class="media-wrap">
+          <img src="assets/img/Abu%20Dhabi%20Ruwais%20Palace%20(1).webp"
+               alt="EHT Tanks project" />
+        </div>
+        <div class="promo-pill">
+          <i class="fa-solid fa-award"></i>
+          Trusted since 1987
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-    <section class="stats">
-        <div class="container stats-grid">
-            <div class="stat fade">
-                <h2 class="counter">35</h2>
-                <p>Years Experience</p>
-            </div>
-            <div class="stat fade">
-                <h2 class="counter">10000</h2>
-                <p>Projects Completed</p>
-            </div>
-            <div class="stat fade">
-                <h2 class="counter">50</h2>
-                <p>Countries Served</p>
-            </div>
-            <div class="stat fade">
-                <h2 class="counter">100</h2>
-                <p>% Satisfaction</p>
-            </div>
+
+      <section class="stats">
+  <div class="container stats-grid">
+
+    <div class="stat fade">
+      <div class="stat-icon">
+        <i class="fa-solid fa-calendar-check"></i>
+      </div>
+      <h2 class="counter">35</h2>
+      <p>Years Experience</p>
+    </div>
+
+    <div class="stat fade">
+      <div class="stat-icon">
+        <i class="fa-solid fa-diagram-project"></i>
+      </div>
+      <h2 class="counter">10000</h2>
+      <p>Projects Completed</p>
+    </div>
+
+    <div class="stat fade">
+      <div class="stat-icon">
+        <i class="fa-solid fa-globe"></i>
+      </div>
+      <h2 class="counter">50</h2>
+      <p>Countries Served</p>
+    </div>
+
+    <div class="stat fade">
+      <div class="stat-icon">
+        <i class="fa-solid fa-thumbs-up"></i>
+      </div>
+      <h2 class="counter">100</h2>
+      <p>% Satisfaction</p>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="why-us">
+  <div class="container">
+
+    <div class="section-title fade">
+      <h2 style="font-weight:700;">
+        <span style="color:#0b3c6f;">Why Choose</span>
+        <span style="color:#e21f26;"> EHT Water Tanks ?</span>
+      </h2>
+      <p>Engineering excellence, certified safety & global delivery</p>
+    </div>
+
+    <div class="why-grid fade">
+
+      <!-- LEFT FEATURES -->
+      <div class="why-features">
+
+        <div class="feature compact">
+          <div class="feature-icon">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div class="feature-text">
+            <h4>WRAS & NSF Certified</h4>
+            <p>Certified to international potable water standards for guaranteed safety.</p>
+          </div>
         </div>
-    </section>
 
-    <section>
-        <div class="container">
-            <div class="section-title fade">
-<h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Why To Choose Our</span>
-  <span style="color:#e21f26;"> EHT Water Tanks</span>
-</h2>
-                <p>Engineering excellence & corporate reliability</p>
-            </div>
-
-            <div class="features">
-
-                <div class="feature fade">
-                    <div class="feature-icon cert"></div>
-                    <h4>WRAS & NSF Certified</h4>
-                    <p>
-                        Ensures safe potable water compliance.
-                    </p>
-
-                </div>
-
-                <div class="feature fade">
-                    <div class="feature-icon weather"></div>
-                    <h4>Weather Resistant</h4>
-                    <p>Designed to perform in extreme climates.</p>
-                </div>
-
-                <div class="feature fade">
-                    <div class="feature-icon engineering"></div>
-                    <h4>Expert Engineering</h4>
-                    <p>35+ years of proven industry expertise.</p>
-                </div>
-
-                <div class="feature fade">
-                    <div class="feature-icon custom"></div>
-                    <h4>Custom Solutions</h4>
-                    <p>Tailor-made water storage systems.</p>
-                </div>
-
-            </div>
+        <div class="feature compact">
+          <div class="feature-icon">
+            <i class="fa-solid fa-sun"></i>
+          </div>
+          <div class="feature-text">
+            <h4>Weather Resistant</h4>
+            <p>Designed to withstand extreme climates and UV exposure with minimal maintenance.</p>
+          </div>
         </div>
-    </section>
 
-
-    <section class="global">
-        <div class="container">
-            <div class="section-title fade">
-               <h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Our</span>
-  <span style="color:#e21f26;">Global Presence</span>
-</h2>
-                <p>Delivering excellence across 50+ countries with prestigious projects worldwide</p>
-            </div>
-
-            <div class="global-grid">
-                <!-- MAP -->
-                <div class="map-box fade">
-                    <div id="worldMap"></div>
-                    <p class="map-note">Operating Across 6 Continents • 50+ Countries</p>
-                </div>
-
-                <!-- LOCATIONS -->
-                <div class="locations fade">
-                    <div class="location blue">
-                        <h4>Dubai, UAE</h4>
-                        <p>Pressed Steel Sectional Tanks</p>
-                    </div>
-                    <div class="location red">
-                        <h4>Singapore</h4>
-                        <p>Stainless Steel Tanks</p>
-                    </div>
-                    <div class="location blue">
-                        <h4>Jakarta, Indonesia</h4>
-                        <p>Pressed Stainless Steel Tanks</p>
-                    </div>
-                    <div class="location red">
-                        <h4>Bangkok, Thailand</h4>
-                        <p>GRP Sectional Tanks</p>
-                    </div>
-                    <div class="location blue">
-                        <h4>Taipei, Taiwan</h4>
-                        <p>Premium Water Storage</p>
-                    </div>
-                    <div class="location red">
-                        <h4>Pucallpa, Peru</h4>
-                        <p>Industrial Water Solutions</p>
-                    </div>
-                </div>
-            </div>
+        <div class="feature compact">
+          <div class="feature-icon">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <div class="feature-text">
+            <h4>Expert Engineering</h4>
+            <p>35+ years of engineering excellence delivering reliable, long-life systems.</p>
+          </div>
         </div>
-    </section>
 
-
-    <section class="projects">
-        <div class="container">
-            <div class="section-title fade-up">
-                <h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Featured</span>
-  <span style="color:#e21f26;">Project References</span>
-</h2>
-            </div>
-
-            <div class="project-grid">
-                <div class="project-card fade-up">
-                    <img src="assets/img/Abu%20Dhabi%20Ruwais%20Palace%20(1).webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Dubai, UAE</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/QATAR02.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Qatar</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/CYBERJAYA. MALAYSIA.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">CyberJaya, Malysia</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/SINGAPORE.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Singapore</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/JOHOR. MALAYSIA (1).webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Johor, Malysia</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/NEGERI SEMBILAN 2, MALAYSIA - Copy.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Negeri Sembilan, Malysia</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-            </div>
+        <div class="feature compact">
+          <div class="feature-icon">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <div class="feature-text">
+            <h4>Custom Solutions</h4>
+            <p>Tailored capacities, fittings and commissioning schedules to meet project needs.</p>
+          </div>
         </div>
-    </section>
 
-
-    <section class="premium-products">
-        <div class="container">
-            <div class="section-title fade-up">
-            
-                 <h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Our</span>
-  <span style="color:#e21f26;">Premium Product Ranges</span>
-</h2>
-                <p>Engineered water tank solutions designed for performance & durability</p>
-            </div>
-
-            <div class="premium-grid">
-
-                <!-- PRODUCT 1 -->
-                <div class="premium-card fade-up">
-                    <div class="image-box">
-                        <img src="assets/img/UITM Melaka Pic (1).webp">
-                    </div>
-                    <div class="content-box">
-                        <h4>GRP Sectional Panel Water Tank</h4>
-                        <p>High-strength GRP tanks engineered for hygienic and corrosion-resistant storage.</p>
-                        <ul>
-                            <li>Corrosion Resistant</li>
-                            <li>Lightweight</li>
-                            <li>Long Lifespan</li>
-                            <li>Easy Maintenance</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- PRODUCT 2 -->
-                <div class="premium-card fade-up">
-                    <div class="image-box">
-                        <img src="assets/img/robotic-welding2 ss.webp">
-                    </div>
-                    <div class="content-box">
-                        <h4>Pressed Steel Sectional Water Tank</h4>
-                        <p>Industrial-grade pressed steel tanks designed for demanding environments.</p>
-                        <ul>
-                            <li>High Strength</li>
-                            <li>Industrial Grade</li>
-                            <li>Cost Effective</li>
-                            <li>Reliable</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- PRODUCT 3 -->
-                <div class="premium-card fade-up">
-                    <div class="image-box">
-                        <img src="assets/img/IMG_8361  ss2.webp">
-                    </div>
-                    <div class="content-box">
-                        <h4>Stainless Steel Sectional Water Tank</h4>
-                        <p>Premium hygienic stainless steel tanks for critical water storage applications.</p>
-                        <ul>
-                            <li>100% Hygienic</li>
-                            <li>Premium Quality</li>
-                            <li>Ultra Durable</li>
-                            <li>Rust-Free</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+        <div class="feature compact">
+          <div class="feature-icon">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <div class="feature-text">
+            <h4>Global Support</h4>
+            <p>Local partners and global project teams provide fast response and installation support.</p>
+          </div>
         </div>
-    </section>
 
-    <section class="certifications">
-        <div class="container">
-            <div class="cert-header reveal">
-                <h2>Our <span>Certifications</span></h2>
-                <p>Internationally recognized standards that validate our quality, safety, and engineering excellence
-                </p>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <aside class="why-panel fade fade-up" aria-labelledby="why-stats">
+        <div class="why-panel-inner">
+
+          <div class="trust-line">
+            <div class="trust-logo">
+              <i class="fa-solid fa-tools"></i>
+            </div>
+            <div>
+              <h3 id="why-stats" style="font-weight:700;">
+                <span style="color:#0b3c6f;">Proven</span>
+                <span style="color:#e21f26;"> Performance</span>
+              </h3>
+              <p>Trusted across 50+ countries with rapid delivery options for urgent projects.</p>
+            </div>
+          </div>
+
+          <div class="stats-grid-compact">
+            <div class="stat-item">
+              <div class="stat-num why-counter" data-target="35">0</div>
+              <div class="stat-label">Years Experience</div>
             </div>
 
-            <div class="cert-timeline">
-
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">WRAS</div>
-                    <div class="cert-content">
-                        <h4>WRAS Approval</h4>
-                        <p>Water regulation compliance for safe potable water storage.</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">NSF</div>
-                    <div class="cert-content">
-                        <h4>NSF Certified</h4>
-                        <p>Certified To NSF / ANSI 61</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">ISO</div>
-                    <div class="cert-content">
-                        <h4>ISO 9001 : 2015</h4>
-                        <p>Quality Management System ensuring consistent product excellence.</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">SLS</div>
-                    <div class="cert-content">
-                        <h4>Sri Lankan Standards</h4>
-                        <p>SLS Mark indicates that the product complies with specific Sri Lankan quality and safety
-                            standards</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">SPAN</div>
-                    <div class="cert-content">
-                        <h4>Suruhanjaya Perkhidmatan Air Negara</h4>
-                        <p></p>SPAN certification ensures that products international standards for safety & hygiene</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="contact-section">
-        <div class="contact-container">
-
-            <!-- LEFT : CONTACT INFO -->
-            <div class="contact-info">
-                <h3>Scedule Site Visit</h3>
-
-                <div class="info-item">
-                    <span class="icon phone"></span>
-                    <div>
-                        <h5>Call Us Now</h5>
-                        <p>+91 9845526313<br>+91 8035911686</p>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon whatsapp"></span>
-                    <div>
-                        <h5>WhatsApp Us</h5>
-                        <p>+91 9845526313</p>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon email"></span>
-                    <div>
-                        <h5>Email Us</h5>
-                        <p>info@ehtwatertanks.com</p>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon location"></span>
-                    <div>
-                        <h5>Visit Our Office</h5>
-                        <p>
-                            No. 10, 3rd Floor, Johar Complex,<br>
-                            Mosque Rd, Basavanagudi,<br>
-                            Bangalore, Karnataka – 560004
-                        </p>
-                    </div>
-                </div>
+            <div class="stat-item">
+              <div class="stat-num why-counter" data-target="10000">0</div>
+              <div class="stat-label">Projects Completed</div>
             </div>
 
-            <!-- RIGHT : FORM -->
-            <div class="contact-form">
-            <h3 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Enquiry</span>
-  <span style="color:#e21f26;">Now</span>
-</h3>
-                       <p>Our specialists will help you choose the right tank system.</p>
-
-                <form>
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="tel" placeholder="Phone" required>
-                    <textarea placeholder="Project Requirements"></textarea>
-                    <button type="submit">Submit Request</button>
-                </form>
+            <div class="stat-item">
+              <div class="stat-num why-counter" data-target="50">0</div>
+              <div class="stat-label">Countries Served</div>
             </div>
+          </div>
+
+          <div class="why-cta">
+            <a href="#contact" class="btn btn-primary" aria-label="Schedule Site Visit">
+              Schedule Site Visit
+            </a>
+          </div>
 
         </div>
-    </section>
+      </aside>
 
-   <section class="qr-section">
+    </div>
+  </div>
+</section>
+
+<section class="global">
+  <div class="container">
+
+    <!-- SECTION TITLE -->
+    <div class="section-title fade">
+      <h2 style="font-weight:700;">
+        <i class="fa-solid fa-globe"
+           style="color:#0b3c6f;margin-right:8px;"></i>
+        <span style="color:#0b3c6f;">Our</span>
+        <span style="color:#e21f26;">Global Presence</span>
+      </h2>
+      <p>
+        <i class="fa-solid fa-map-location-dot"
+           style="color:#0b3c6f;"></i>
+        Trusted distribution partners across key global markets
+      </p>
+    </div>
+
+    <div class="global-grid">
+
+      <!-- MAP -->
+      <div class="map-box fade">
+        <div id="worldMap"></div>
+        <p class="map-note">
+          <i class="fa-solid fa-earth-asia"></i>
+          Distributor Network • Middle East • Asia • South Asia
+        </p>
+      </div>
+
+      <!-- DISTRIBUTOR LOCATIONS -->
+      <div class="locations fade">
+
+        <div class="location blue">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            Sabelita Engineering PTE LTD
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Singapore · Changi South
+          </p>
+        </div>
+
+        <div class="location red">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            Magtech General Construction & Trading Pte Ltd
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Singapore · Woodlands
+          </p>
+        </div>
+
+        <div class="location blue">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            Cisterna Trading & Contracting
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Qatar · Doha
+          </p>
+        </div>
+
+        <div class="location red">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            United Building Material (UBM)
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Bahrain · Manama
+          </p>
+        </div>
+
+        <div class="location blue">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            Potaglas Abu Dhabi
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            UAE · Abu Dhabi
+          </p>
+        </div>
+
+        <div class="location red">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            Pipelink International Trading L.L.C
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            UAE · Sharjah
+          </p>
+        </div>
+
+        <div class="location blue">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            Alfouz Contracting Company WLL
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Bahrain · East Riffa
+          </p>
+        </div>
+
+        <div class="location red">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            Yaseer Arabia LLC.
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Saudi Arabia · Riyadh
+          </p>
+        </div>
+
+        <div class="location blue">
+          <h4>
+            <i class="fa-solid fa-building"></i>
+            EHT WATER TANKS PVT. LTD.
+          </h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            India · Bengaluru
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+     <section class="projects">
+  <div class="container">
+
+    <div class="section-title fade-up">
+    
+       <h2 style="font-weight:700;">
+        <i class="fa-solid fa-briefcase"
+           style="color:#0b3c6f;margin-right:8px;"></i>
+        <span style="color:#0b3c6f;">Featured</span>
+        <span style="color:#e21f26;"> Project References</span>
+      </h2>
+       <p class="section-subtitle">
+  <i style="color:#0b3c6f" class="fa-solid fa-globe"></i>
+  Successful project executions across the Middle East, Asia, and global markets
+</p>
+
+    </div>
+
+    <div class="project-grid">
+
+      <!-- PROJECT CARD -->
+      <div class="project-card fade-up">
+        <img src="assets/img/Abu%20Dhabi%20Ruwais%20Palace%20(1).webp">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="tag">
+            <i class="fa-solid fa-location-dot"></i>
+            Dubai, UAE
+          </span>
+          <h4>
+            <i class="fa-solid fa-water"></i>
+            GRP Sectional Tanks
+          </h4>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <img src="assets/img/QATAR02.webp">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="tag">
+            <i class="fa-solid fa-location-dot"></i>
+            Qatar
+          </span>
+          <h4>
+            <i class="fa-solid fa-water"></i>
+            GRP Sectional Tanks
+          </h4>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <img src="assets/img/CYBERJAYA. MALAYSIA.webp">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="tag">
+            <i class="fa-solid fa-location-dot"></i>
+            CyberJaya, Malaysia
+          </span>
+          <h4>
+            <i class="fa-solid fa-water"></i>
+            GRP Sectional Tanks
+          </h4>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <img src="assets/img/SINGAPORE.webp">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="tag">
+            <i class="fa-solid fa-location-dot"></i>
+            Singapore
+          </span>
+          <h4>
+            <i class="fa-solid fa-water"></i>
+            GRP Sectional Tanks
+          </h4>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <img src="assets/img/JOHOR. MALAYSIA (1).webp">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="tag">
+            <i class="fa-solid fa-location-dot"></i>
+            Johor, Malaysia
+          </span>
+          <h4>
+            <i class="fa-solid fa-water"></i>
+            GRP Sectional Tanks
+          </h4>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <img src="assets/img/NEGERI SEMBILAN 2, MALAYSIA - Copy.webp">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="tag">
+            <i class="fa-solid fa-location-dot"></i>
+            Negeri Sembilan, Malaysia
+          </span>
+          <h4>
+            <i class="fa-solid fa-water"></i>
+            GRP Sectional Tanks
+          </h4>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+  <section class="premium-products">
+  <div class="container">
+
+    <div class="section-title fade-up">
+   
+      <h2 style="font-weight:700;">
+         <i class="fa-solid fa-boxes-stacked"
+           style="color:#0b3c6f;margin-right:8px;"></i>
+        <span style="color:#0b3c6f;">Our</span>
+        <span style="color:#e21f26;">Premium Product Ranges</span>
+      </h2>
+       <p>
+        <i class="fa-solid fa-shield-halved"
+           style="color:#0b3c6f"></i>
+        Engineered water tank solutions designed for performance & durability
+      </p>
+
+    </div>
+
+    <div class="premium-grid">
+
+      <!-- PRODUCT 1 -->
+      <div class="premium-card fade-up">
+        <div class="image-box">
+          <img src="assets/img/UITM Melaka Pic (1).webp">
+        </div>
+        <div class="content-box">
+          <h4>
+            <i class="fa-solid fa-layer-group"></i>
+            GRP Sectional Panel Water Tank
+          </h4>
+          <p>
+            High-strength GRP tanks engineered for hygienic and corrosion-resistant storage.
+          </p>
+          <ul>
+          <li><i class="fa-solid fa-shield" style="color:#e21f26;margin-right:8px;"></i> Corrosion Resistant</li>
+<li><i class="fa-solid fa-feather" style="color:#e21f26;margin-right:8px;"></i> Lightweight</li>
+<li><i class="fa-solid fa-infinity" style="color:#e21f26;margin-right:8px;"></i> Long Lifespan</li>
+<li><i class="fa-solid fa-screwdriver-wrench" style="color:#e21f26;margin-right:8px;"></i> Easy Maintenance</li>
+
+          </ul>
+        </div>
+      </div>
+
+      <!-- PRODUCT 2 -->
+      <div class="premium-card fade-up">
+        <div class="image-box">
+          <img src="assets/img/robotic-welding2 ss.webp">
+        </div>
+        <div class="content-box">
+          <h4>
+            <i class="fa-solid fa-industry"></i>
+            Pressed Steel Sectional Water Tank
+          </h4>
+          <p>
+            Industrial-grade pressed steel tanks designed for demanding environments.
+          </p>
+          <ul>
+           <li><i class="fa-solid fa-hammer" style="color:#e21f26;margin-right:8px;"></i> High Strength</li>
+<li><i class="fa-solid fa-gear" style="color:#e21f26;margin-right:8px;"></i> Industrial Grade</li>
+<li><i class="fa-solid fa-tags" style="color:#e21f26;margin-right:8px;"></i> Cost Effective</li>
+<li><i class="fa-solid fa-check-double" style="color:#e21f26;margin-right:8px;"></i> Reliable</li>
+
+          </ul>
+        </div>
+      </div>
+
+      <!-- PRODUCT 3 -->
+      <div class="premium-card fade-up">
+        <div class="image-box">
+          <img src="assets/img/IMG_8361  ss2.webp">
+        </div>
+        <div class="content-box">
+          <h4>
+            <i class="fa-solid fa-droplet"></i>
+            Stainless Steel Sectional Water Tank
+          </h4>
+          <p>
+            Premium hygienic stainless steel tanks for critical water storage applications.
+          </p>
+          <ul>
+            <li><i class="fa-solid fa-circle-check" style="color:#e21f26;margin-right:8px;"></i> 100% Hygienic</li>
+<li><i class="fa-solid fa-star" style="color:#e21f26;margin-right:8px;"></i> Premium Quality</li>
+<li><i class="fa-solid fa-shield-virus" style="color:#e21f26;margin-right:8px;"></i> Ultra Durable</li>
+<li><i class="fa-solid fa-ban" style="color:#e21f26;margin-right:8px;"></i> Rust-Free</li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="certifications">
+  <div class="container">
+
+    <div class="cert-header reveal">
+      <h2>
+        <i class="fa-solid fa-award" style="color:#0b3c6f;margin-right:8px;"></i>
+        Our <span>Certifications</span>
+      </h2>
+      <p>
+<i class="fa-solid fa-circle-check" style="color:#0b3c6f;margin-right:8px;"></i>
+        Internationally recognized standards that validate our quality, safety, and engineering excellence
+      </p>
+    </div>
+
+    <div class="cert-timeline">
+
+      <!-- WRAS -->
+      <div class="cert-item reveal">
+        <div class="cert-year">
+          <i class="fa-solid fa-droplet"></i>
+        </div>
+        <div class="cert-content">
+          <h4>WRAS Approval</h4>
+          <p>Water regulation compliance for safe potable water storage.</p>
+        </div>
+      </div>
+
+      <!-- NSF -->
+      <div class="cert-item reveal">
+        <div class="cert-year">
+          <i class="fa-solid fa-check-double"></i>
+        </div>
+        <div class="cert-content">
+          <h4>NSF Certified</h4>
+          <p>Certified to NSF / ANSI 61 for potable water applications.</p>
+        </div>
+      </div>
+
+      <!-- ISO -->
+      <div class="cert-item reveal">
+        <div class="cert-year">
+          <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+        <div class="cert-content">
+          <h4>ISO 9001 : 2015</h4>
+          <p>Quality management system ensuring consistent product excellence.</p>
+        </div>
+      </div>
+
+      <!-- SLS -->
+      <div class="cert-item reveal">
+        <div class="cert-year">
+          <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+        <div class="cert-content">
+          <h4>SLS Certified</h4>
+          <p>Compliance with Sri Lanka Standards for product quality and safety.</p>
+        </div>
+      </div>
+
+            <!-- SPAN -->
+      <div class="cert-item reveal">
+        <div class="cert-year">
+          <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+        <div class="cert-content">
+          <h4>SPAN Certified</h4>
+          <p>Approved by SPAN Malaysia for regulated water storage systems.</p>
+        </div>
+      </div>
+
+     
+
+    </div>
+  </div>
+</section>
+
+
+       <section class="contact-section">
+  <div class="contact-container">
+
+    <!-- LEFT : CONTACT INFO -->
+    <div class="contact-info">
+      <h3>
+        <i class="fa-solid fa-calendar-check"
+           style="color:#e21f26;margin-right:8px;"></i>
+        Schedule Site Visit
+      </h3>
+
+      <div class="info-item">
+        <span class="icon">
+          <i class="fa-solid fa-phone"></i>
+        </span>
+        <div>
+          <h5>Call Us Now</h5>
+          <p>
+            +91 98455 26313<br>
+            +91 80359 11686
+          </p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="icon whatsapp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </span>
+        <div>
+          <h5>WhatsApp Us</h5>
+          <p>+91 98455 26313</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="icon">
+          <i class="fa-solid fa-envelope"></i>
+        </span>
+        <div>
+          <h5>Email Us</h5>
+          <p>info@ehtwatertanks.com</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="icon">
+          <i class="fa-solid fa-location-dot"></i>
+        </span>
+        <div>
+          <h5>Visit Our Office</h5>
+          <p>
+            No. 10, 3rd Floor, Johar Complex,<br>
+            Mosque Rd, Basavanagudi,<br>
+            Bangalore, Karnataka – 560004
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT : FORM -->
+    <div class="contact-form">
+      <h3 style="font-weight:700;">
+        <span style="color:#0b3c6f;">Enquiry</span>
+        <span style="color:#e21f26;">Now</span>
+      </h3>
+      <p>Our specialists will help you choose the right tank system.</p>
+
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Phone" required>
+        <textarea placeholder="Project Requirements"></textarea>
+        <button type="submit">
+          <i class="fa-solid fa-paper-plane"></i>
+          Submit Request
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+     <section class="qr-section">
   <div class="qr-container">
 
     <div class="qr-header fade-up">
-      <h2>Stay Connected</h2>
-      <p>Follow us on LinkedIn or visit our website by scanning the QR codes</p>
+      <h2 style="font-weight:700;">
+        <i class="fa-solid fa-qrcode"
+           style="color:#0b3c6f;margin-right:8px;"></i>
+        <span style="color:#0b3c6f;">Stay</span>
+        <span style="color:#e21f26;">Connected</span>
+      </h2>
+      <p>
+        <i class="fa-solid fa-wifi"
+           style="color:#e21f26;margin-right:6px;"></i>
+        Follow us on LinkedIn or visit our website by scanning the QR codes
+      </p>
     </div>
 
     <div class="qr-grid">
@@ -1769,74 +2947,210 @@
       <!-- LinkedIn QR -->
       <div class="qr-card scale-in">
         <div class="qr-img">
-          <img src="assets/img/qr_code/eht_water_tank_linkedin.png" alt="LinkedIn QR">
+          <img
+            src="assets/img/qr_code/eht_water_tank_linkedin.png"
+            alt="LinkedIn QR">
         </div>
-        <h4>Follow Us on LinkedIn</h4>
-        <span>@EHT Water Tanks</span>
+        <h4>
+          <i class="fa-brands fa-linkedin"></i>
+          Follow Us on LinkedIn
+        </h4>
+        <span>
+          <i class="fa-solid fa-at"></i>
+          @EHT Water Tanks
+        </span>
       </div>
 
       <!-- Website QR -->
       <div class="qr-card scale-in">
         <div class="qr-img">
-          <img src="assets/img/qr_code/eht_water_tank_qr.png" alt="Website QR">
+          <img
+            src="assets/img/qr_code/eht_water_tank_qr.png"
+            alt="Website QR">
         </div>
-        <h4>Visit Our Website</h4>
-        <span>www.ehtwatertanks.com</span>
+        <h4>
+          <i class="fa-solid fa-globe"></i>
+          Visit Our Website
+        </h4>
+        <span>
+          <i class="fa-solid fa-link"></i>
+          www.ehtwatertanks.com
+        </span>
       </div>
 
     </div>
   </div>
 </section>
 
+<footer class="site-footer">
+  <div class="footer-water"></div>
 
-  <footer class="site-footer">
   <div class="footer-container">
 
-    <!-- Logo -->
+    <!-- Brand -->
     <div class="footer-brand">
       <img src="assets/img/eht-logo.webp" alt="EHT Water Tanks Logo">
+      <p>
+        EHT Water Tanks delivers WRAS & NSF certified GRP and industrial
+        water tank solutions trusted worldwide since 1987.
+      </p>
     </div>
 
-    <!-- Navigation -->
-    <nav class="footer-nav" aria-label="Footer Navigation">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <!-- Links -->
+    <div class="footer-links">
+      <h4>
+        <i class="fa-solid fa-link"></i>
+        Quick Links
+      </h4>
+      <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="#about"><i class="fa-solid fa-circle-info"></i> About</a>
+      <a href="#products"><i class="fa-solid fa-box"></i> Products</a>
+      <a href="#projects"><i class="fa-solid fa-briefcase"></i> Projects</a>
+      <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </div>
 
-    <!-- Copyright -->
-    <div class="footer-copy">
-      <p>© 2025 <strong>EHT Water Tanks Pvt. Ltd.</strong> All Rights Reserved.</p>
+    <!-- Contact -->
+    <div class="footer-contact">
+      <h4>
+        <i class="fa-solid fa-address-book"></i>
+        Contact Us
+      </h4>
+      <p>
+        <i class="fa-solid fa-phone"></i>
+        +91 98455 26313
+      </p>
+      <p>
+        <i class="fa-solid fa-envelope"></i>
+        info@ehtwatertanks.com
+      </p>
+      <p>
+        <i class="fa-solid fa-location-dot"></i>
+        Bangalore, Karnataka<br>
+        India
+      </p>
     </div>
 
   </div>
+
+ <div class="footer-bottom">
+  <p>
+    © 2025 <strong>EHT Water Tanks Pvt. Ltd.</strong> All Rights Reserved.
+  </p>
+  <span class="dev-credit">
+    Designed &amp; Developed by <strong>DHK</strong>
+  </span>
+</div>
+
+
+
+  <!-- ===== CHATBOT ===== -->
+  <div id="chatbot">
+    <div class="chatbot-header">
+      <span>
+        <i class="fa-solid fa-droplet"></i>
+        EHT Assistant
+      </span>
+      <button onclick="toggleChat()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="chatbot-body" id="chatBody">
+      <div class="bot-msg">
+        <i class="fa-solid fa-hand-wave"></i>
+        Hi! Welcome to <strong>EHT Water Tanks</strong>.<br>
+        How can I help you today?
+      </div>
+    </div>
+
+    <div class="chatbot-footer">
+      <input type="text" id="chatInput" placeholder="Type your message..." />
+      <button onclick="sendMsg()">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Chat Button -->
+  <div class="chatbot-launcher" onclick="toggleChat()">
+    <i class="fa-solid fa-comments"></i>
+  </div>
+
 </footer>
 
+
 <!-- Floating Call & WhatsApp CTA -->
-<div class="cta-left">
-  <a href="tel:+919845526313" class="cta-btn call" aria-label="Call EHT Water Tanks">
-    <span class="cta-icon">📞</span>
-    <span class="cta-text">
-      Call Now<br>
-      <small>+91 98455 26313</small>
-    </span>
-  </a>
+<div style="
+    position:fixed;
+    left:15px;
+    bottom:80px;
+    display:flex;
+    gap:12px;
+    z-index:9999;
+    flex-wrap:nowrap;
+">
+
+    <!-- Call CTA -->
+    <a href="tel:+919845526313"
+       aria-label="Call EHT Water Tanks"
+       style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding:12px 16px;
+        border-radius:50px;
+        background:#0b3c6f;
+        color:#fff;
+        text-decoration:none;
+        font-size:14px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.25);
+        animation:shake 1.8s infinite;
+       ">
+<span class="fa-solid fa-phone"></span>
+        <span>
+            Call Now<br>
+            <small style="font-size:11px;opacity:0.9;">+91 98455 26313</small>
+        </span>
+    </a>
+
+    <!-- WhatsApp CTA -->
+    <a href="https://wa.me/919845526313"
+       target="_blank"
+       aria-label="WhatsApp EHT Water Tanks"
+       style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding:12px 16px;
+        border-radius:50px;
+        background:#25D366;
+        color:#fff;
+        text-decoration:none;
+        font-size:14px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.25);
+        animation:shake 1.8s infinite;
+       ">
+<span class="fa-brands fa-whatsapp"></span>
+        <span>
+            WhatsApp<br>
+            <small style="font-size:11px;opacity:0.9;">+91 98455 26313</small>
+        </span>
+    </a>
+
 </div>
 
-<div class="cta-right">
-  <a href="https://wa.me/919845526313" target="_blank" class="cta-btn whatsapp" aria-label="WhatsApp EHT Water Tanks">
-    <span class="cta-icon">💬</span>
-    <span class="cta-text">
-      WhatsApp<br>
-      <small>+91 98455 26313</small>
-    </span>
-  </a>
-</div>
 
 
+<!-- Inline Keyframes (must be once in page) -->
+<style>
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+</style>
 
-    <script>
+        <script>
         /* Sticky Header */
         window.addEventListener("scroll", () => {
             document.getElementById("header")
@@ -1849,13 +3163,21 @@
         }
 
         /* Scroll Animations */
-        const fades = document.querySelectorAll('.fade');
+        /* Observe both .fade and .fade-up so section headers and other elements become visible */
+        const fades = document.querySelectorAll('.fade, .fade-up');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if (e.isIntersecting) e.target.classList.add('show');
             });
         }, { threshold: .2 });
         fades.forEach(f => observer.observe(f));
+
+        /* Also observe .reveal elements (used elsewhere) to ensure consistent reveal behavior */
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+        }, { threshold: 0.15 });
+        reveals.forEach(r => revealObserver.observe(r));
 
         /* Counter Animation */
         const counters = document.querySelectorAll('.counter');
@@ -1878,36 +3200,42 @@
 
     </script>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <script>
-        const map = L.map('worldMap', {
-            zoomControl: false,
-            scrollWheelZoom: false,
-            attributionControl: false   // ✅ Hides Leaflet | © OpenStreetMap
-        }).setView([20, 0], 2);
+        <script>
+    const map = L.map('worldMap', {
+        zoomControl: false,
+        scrollWheelZoom: false,
+        attributionControl: false
+    }).setView([20, 0], 2);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        /* Locations */
-        const locations = [
-            { name: "Dubai, UAE", coords: [25.2048, 55.2708] },
-            { name: "Singapore", coords: [1.3521, 103.8198] },
-            { name: "Jakarta, Indonesia", coords: [-6.2088, 106.8456] },
-            { name: "Bangkok, Thailand", coords: [13.7563, 100.5018] },
-            { name: "Taipei, Taiwan", coords: [25.0330, 121.5654] },
-            { name: "Pucallpa, Peru", coords: [-8.3791, -74.5539] }
-        ];
+    /* Distributor Locations */
+    const locations = [
+        { name: "Sabelita Engineering PTE LTD — Singapore (Changi South)", coords: [1.3050, 103.9610] },
+        { name: "Magtech General Construction & Trading Pte Ltd — Singapore (Woodlands)", coords: [1.4369, 103.7868] },
+        { name: "Cisterna Trading & Contracting — Qatar (Doha)", coords: [25.2854, 51.5310] },
+        { name: "United Building Material (UBM) — Bahrain (Manama)", coords: [26.2183, 50.5831] },
+        { name: "Potaglas Abu Dhabi — UAE (Abu Dhabi)", coords: [24.4539, 54.3773] },
+        { name: "Pipelink International Trading L.L.c — UAE (Sharjah)", coords: [25.3463, 55.4209] },
+        { name: "Alfouz Contracting Company WLL — Bahrain (East Riffa)", coords: [26.0681, 50.5867] },
+        { name: "Yaseer Arabia LLC. — Saudi Arabia (Riyadh)", coords: [24.7136, 46.6753] },
+        { name: "EHT WATER TANKS PVT. LTD. — India (Bengaluru)", coords: [12.9716, 77.5946] }
+    ];
 
-        locations.forEach(loc => {
-            L.marker(loc.coords)
-                .addTo(map)
-                .bindPopup(`<strong>${loc.name}</strong>`);
-        });
-    </script>
+    locations.forEach(loc => {
+        L.marker(loc.coords)
+            .addTo(map)
+            .bindPopup(`<strong>${loc.name}</strong>`);
+    });
 
+    // Fit bounds to show all markers with padding
+    const group = L.featureGroup(locations.map(l => L.marker(l.coords)));
+    map.fitBounds(group.getBounds().pad(0.25));
+</script>
 
-    <script>
+        <script>
         const projectCards = document.querySelectorAll('.project-card');
 
         const projectObserver = new IntersectionObserver(entries => {
@@ -1921,7 +3249,7 @@
         projectCards.forEach(card => projectObserver.observe(card));
     </script>
 
-    <script>
+        <script>
         const premiumCards = document.querySelectorAll('.premium-card');
 
         const premiumObserver = new IntersectionObserver(entries => {
@@ -1935,8 +3263,7 @@
         premiumCards.forEach(card => premiumObserver.observe(card));
     </script>
 
-
-    <script>
+        <script>
         const revealEls = document.querySelectorAll('.reveal');
         const revealObs = new IntersectionObserver(entries => {
             entries.forEach(e => {
@@ -1946,8 +3273,154 @@
         revealEls.forEach(el => revealObs.observe(el));
     </script>
 
+        <script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("page-loader").classList.add("hide");
+    }, 1200); // smooth delay
+  });
+</script>
+
+<!-- Hero enhancements: typewriter + CTA pulse -->
+<script>
+    (function(){
+        // Typewriter rotating phrases
+        const el = document.querySelector('.typewriter');
+        if(el){
+            const words = JSON.parse(el.dataset.words || '[]');
+            let part = 0, offset = 0, forwards = true, skipCount = 0, skipDelay = 14, speed = 75;
+            const type = () => {
+                el.textContent = words[part].substr(0, offset);
+                if(forwards){
+                    if(offset >= words[part].length){
+                        skipCount++;
+                        if(skipCount === skipDelay){ forwards = false; skipCount = 0; }
+                    } else { offset++; }
+                } else {
+                    if(offset === 0){ forwards = true; part = (part+1) % words.length; }
+                    else offset--; 
+                }
+                setTimeout(type, speed);
+            };
+            if(words.length) type();
+        }
+
+        // CTA pulse trigger for first view
+        const cta = document.querySelector('.cta-quote');
+        if(cta){
+            setTimeout(()=> cta.classList.add('pulse'), 700);
+            setTimeout(()=> cta.classList.remove('pulse'), 4200);
+        }
+
+        // Accessibility: focus spec button on keyboard shortcut 's'
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 's' || e.key === 'S'){
+                const spec = document.getElementById('specBtn');
+                if(spec) spec.focus();
+            }
+        });
+
+    })();
+
+    // Why Us counters: animate when panel is visible
+    (function(){
+      const counters = document.querySelectorAll('.why-counter');
+      if(!counters.length) return;
+
+      const animate = (el) => {
+        const target = +el.dataset.target || 0;
+        let cur = 0;
+        const step = Math.max(1, Math.floor(target / 40));
+        const tick = () => {
+          cur += step;
+          if(cur < target){ el.textContent = cur; requestAnimationFrame(tick); }
+          else el.textContent = target;
+        };
+        tick();
+      };
+
+      const panel = document.querySelector('.why-panel');
+      if(panel){
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting){
+              counters.forEach(c => animate(c));
+              obs.disconnect();
+            }
+          });
+        }, {threshold:0.3});
+
+        obs.observe(panel);
+      }
+    })();
+</script>
 
 
-</body>
+<script>
+const chatbot = document.getElementById("chatbot");
+const chatBody = document.getElementById("chatBody");
+const chatInput = document.getElementById("chatInput");
+
+/* Auto open chatbot after page load */
+window.addEventListener("load", ()=>{
+  setTimeout(()=>{
+    chatbot.classList.add("active");
+  }, 2000);
+});
+
+/* Toggle chatbot */
+function toggleChat(){
+  chatbot.classList.toggle("active");
+}
+
+/* Send Message */
+function sendMsg(){
+  const msg = chatInput.value.trim();
+  if(!msg) return;
+
+  // User message
+  const userDiv = document.createElement("div");
+  userDiv.className = "user-msg";
+  userDiv.textContent = msg;
+  chatBody.appendChild(userDiv);
+  chatInput.value = "";
+  chatBody.scrollTop = chatBody.scrollHeight;
+
+  // Bot reply
+  setTimeout(()=>{
+    const botDiv = document.createElement("div");
+    botDiv.className = "bot-msg";
+
+    if(msg.toLowerCase().includes("price") || msg.toLowerCase().includes("cost")){
+      botDiv.innerHTML = "💰 Pricing depends on capacity & location.<br>Please click <strong>Get Free Quote</strong> or share your requirement.";
+    }
+    else if(msg.toLowerCase().includes("contact")){
+      botDiv.innerHTML = "📞 You can call us at <strong>+91 98455 26313</strong><br>or WhatsApp us instantly.";
+    }
+    else if(msg.toLowerCase().includes("tank")){
+      botDiv.innerHTML = "💧 We manufacture <strong>GRP, Pressed Steel & Stainless Steel</strong> water tanks.";
+    }
+    else{
+      botDiv.innerHTML = "✅ Thank you! Our team will assist you shortly.<br>Would you like a site visit or quotation?";
+    }
+
+    chatBody.appendChild(botDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 800);
+}
+
+/* Enter key support */
+chatInput.addEventListener("keypress", e=>{
+  if(e.key==="Enter") sendMsg();
+});
+</script>
+
+<!-- <script>
+window.addEventListener("load", function(){
+    document.getElementById("page-loader").style.display = "none";
+});
+</script> -->
+
+        </body>
 
 </html>
