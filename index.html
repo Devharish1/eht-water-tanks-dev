@@ -1,1787 +1,1919 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EHT Water Tanks</title>
+<meta charset="UTF-8">
+<title>EHT Water Tanks | Premium Water Storage Solutions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        :root {
-            --primary: #0b3c6f;
-            --secondary: #e21f26;
-            --dark: #0f1c2e;
-            --light: #f4f7fb;
-        }
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-        html {
-            scroll-behavior: smooth;
-        }
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        body {
-            background: #fff;
-            color: #333;
-        }
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
-        }
+<!-- Flaticon Icons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
-        img {
-            max-width: 100%;
-            display: block;
-        }
 
-        a {
-            text-decoration: none
-        }
-
-        /* ===== HEADER ===== */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: #fff;
-            transition: .3s;
-        }
-
-        header.scrolled {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .logo span {
-            color: var(--secondary);
-        }
-
-        .nav ul {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav ul li a {
-            color: #333;
-            font-weight: 500;
-        }
-
-        .menu {
-            display: none;
-            font-size: 26px;
-            cursor: pointer;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background:
-                linear-gradient(to right, rgba(11, 60, 111, .9), rgba(11, 60, 111, .8)),
-                url("assets/img/CYBERJAYA. MALAYSIA.webp") center/cover;
-            color: #fff;
-        }
-
-        .hero-content {
-            max-width: 700px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            margin: 20px 0 35px;
-            font-size: 18px;
-            opacity: .95;
-        }
-
-        .btn {
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--secondary);
-            color: #fff;
-        }
-
-        .btn-outline {
-            border: 2px solid #fff;
-            color: #fff;
-            margin-left: 15px
-        }
-
-        /* ===== STATS ===== */
-        .stats {
-            background: var(--primary);
-            color: #fff;
-            padding: 80px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat h2 {
-            font-size: 42px;
-        }
-
-        .stat p {
-            opacity: .9
-        }
-
-        /* ===== SECTIONS ===== */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--primary);
-        }
-
-        .section-title p {
-            opacity: .7
-        }
-
-        /* ===== WHY US ===== */
-        /* FEATURE CARD */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 28px;
-        }
-
-        .feature {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
-            text-align: center;
-            transition: .35s cubic-bezier(.4, 0, .2, 1);
-        }
-
-        .feature:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 22px 45px rgba(0, 0, 0, .12);
-        }
-
-        /* ICON */
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0b3c6f, #052a4d);
-            position: relative;
-        }
-
-        /* ICON SYMBOLS */
-        .feature-icon::after {
-            font-size: 28px;
-            color: #fff;
-        }
-
-        .feature-icon.cert::after {
-            content: "✔";
-        }
-
-        .feature-icon.weather::after {
-            content: "☀";
-        }
-
-        .feature-icon.engineering::after {
-            content: "⚙";
-        }
-
-        .feature-icon.custom::after {
-            content: "🛠";
-        }
-
-        /* TEXT */
-        .feature h4 {
-            margin-bottom: 10px;
-            color: #0b3c6f;
-            font-size: 18px;
-        }
-
-        .feature p {
-            font-size: 14px;
-            opacity: .8;
-        }
-
-        /* SCROLL FADE (smooth) */
-        .fade {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: .6s cubic-bezier(.4, 0, .2, 1);
-        }
-
-        .fade.show {
-            opacity: 1;
-            transform: none;
-        }
-
-
-
-        /* ===== PRODUCTS ===== */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .product {
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-            transition: .4s;
-        }
-
-        .product:hover {
-            transform: translateY(-10px);
-        }
-
-        .product img {
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .product-content {
-            padding: 30px;
-        }
-
-        .product-content h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        /* ===== QUOTE ===== */
-        .quote {
-            background: linear-gradient(135deg, var(--primary), #052a4d);
-            color: #fff;
-        }
-
-        .quote-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        form {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-        }
-
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-        }
-
-        form button {
-            width: 100%;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--dark);
-            color: #fff;
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        footer a {
-            color: #fff;
-            opacity: .7;
-            margin: 0 10px
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .fade {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all .8s ease;
-        }
-
-        .fade.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media(max-width:768px) {
-            .nav ul {
-                position: absolute;
-                top: 80px;
-                right: 0;
-                background: #fff;
-                flex-direction: column;
-                width: 220px;
-                padding: 20px;
-                display: none;
-            }
-
-            .nav ul.active {
-                display: flex;
-            }
-
-            .menu {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .quote-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== GLOBAL PRESENCE ===== */
-        .global {
-            background: #f4f7fb;
-        }
-
-        .global .section-title span {
-            color: var(--primary);
-        }
-
-        .global-grid {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 40px;
-            align-items: stretch;
-        }
-
-        /* MAP */
-        .map-box {
-            background: #eaf3ff;
-            padding: 20px;
-            border-radius: 20px;
-        }
-
-        #worldMap {
-            width: 100%;
-            height: 360px;
-            border-radius: 15px;
-        }
-
-        .map-note {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 14px;
-            opacity: .7;
-        }
-
-        /* LOCATIONS */
-        .locations {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .location {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-            transition: .3s;
-        }
-
-        .location:hover {
-            transform: translateY(-6px);
-        }
-
-        .location h4 {
-            margin-bottom: 6px;
-            font-size: 16px;
-        }
-
-        .location p {
-            font-size: 14px;
-            opacity: .7;
-        }
-
-        .location.red {
-            border-left: 4px solid #e21f26;
-        }
-
-        .location.blue {
-            border-left: 4px solid var(--primary);
-        }
-
-        /* Responsive */
-        @media(max-width:900px) {
-            .global-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-        /* ===== PROJECTS ===== */
-        .projects {
-            background: #f6f9fd;
-            padding: 90px 0;
-        }
-
-        .projects .section-title span {
-            color: var(--primary);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        /* CARD */
-        .project-card {
-            position: relative;
-            height: 220px;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, .15);
-            transform: translateY(40px);
-            opacity: 0;
-            transition: .6s ease;
-        }
-
-        .project-card.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .6s ease;
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg,
-                    rgba(0, 0, 0, .2),
-                    rgba(11, 60, 111, .85));
-            opacity: .9;
-        }
-
-        /* CONTENT */
-        .project-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            color: #fff;
-            z-index: 2;
-            transform: translateY(20px);
-            transition: .5s ease;
-        }
-
-        .project-content h4 {
-            margin-top: 10px;
-            font-size: 18px;
-        }
-
-        /* TAG */
-        .tag {
-            display: inline-block;
-            background: rgba(255, 255, 255, .15);
-            backdrop-filter: blur(6px);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* HOVER */
-        .project-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .project-card:hover .project-content {
-            transform: translateY(0);
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:768px) {
-            .project-card {
-                height: 200px;
-            }
-        }
-
-
-        /* ===== PREMIUM PRODUCTS ===== */
-        .premium-products {
-            background: #ffffff;
-            padding: 100px 0;
-        }
-
-        .premium-products .section-title span {
-            color: var(--primary);
-        }
-
-        .premium-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        /* CARD */
-        .premium-card {
-            background: #fff;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .1);
-            transition: .5s ease;
-            transform: translateY(40px);
-            opacity: 0;
-        }
-
-        .premium-card.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .premium-card:hover {
-            transform: translateY(-12px);
-        }
-
-        /* IMAGE */
-        .image-box {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: .6s ease;
-        }
-
-        .premium-card:hover img {
-            transform: scale(1.1);
-        }
-
-        /* ICON */
-        .icon-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #fff;
-            color: var(--primary);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
-        }
-
-        /* CONTENT */
-        .content-box {
-            padding: 30px;
-            position: relative;
-        }
-
-        .content-box::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 30px;
-            bottom: 30px;
-            width: 4px;
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        .content-box h4 {
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .content-box p {
-            font-size: 14px;
-            opacity: .75;
-            margin-bottom: 15px;
-        }
-
-        .content-box ul {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .content-box ul li {
-            font-size: 14px;
-            padding-left: 20px;
-            margin-bottom: 6px;
-            position: relative;
-        }
-
-        .content-box ul li::before {
-            content: '✔';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-        }
-
-        .content-box a {
-            color: var(--secondary);
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:768px) {
-            .image-box {
-                height: 200px;
-            }
-        }
-
-        .contact-section {
-            background: linear-gradient(135deg, #062b4f, #0b3c6f);
-            padding: 80px 20px;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        /* LEFT PANEL */
-        .contact-info {
-            color: #fff;
-            animation: fadeLeft .8s ease;
-        }
-
-        .contact-info h3 {
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
-
-        .info-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 22px;
-        }
-
-        .info-item h5 {
-            font-size: 16px;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-
-        .info-item p {
-            font-size: 14px;
-            line-height: 1.6;
-            opacity: .9;
-        }
-
-        /* ICONS */
-        .icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, .12);
-            font-size: 18px;
-        }
-
-        .icon.phone::before {
-            content: "📞";
-        }
-
-        .icon.whatsapp::before {
-            content: "💬";
-        }
-
-        .icon.email::before {
-            content: "✉️";
-        }
-
-        .icon.location::before {
-            content: "📍";
-        }
-
-        /* FORM */
-        .contact-form {
-            background: #fff;
-            padding: 40px;
-            border-radius: 18px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, .25);
-            animation: fadeRight .8s ease;
-        }
-
-        .contact-form h3 {
-            font-size: 26px;
-            margin-bottom: 8px;
-            color: #0b3c6f;
-        }
-
-        .contact-form p {
-            font-size: 14px;
-            margin-bottom: 25px;
-            color: #555;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 16px;
-            font-size: 14px;
-        }
-
-        .contact-form textarea {
-            min-height: 110px;
-            resize: none;
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 14px;
-            background: #e21f26;
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        .contact-form button:hover {
-            background: #c8191f;
-            transform: translateY(-2px);
-        }
-
-        /* ANIMATIONS */
-        @keyframes fadeLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-40px)
-            }
-
-            to {
-                opacity: 1;
-                transform: none
-            }
-        }
-
-        @keyframes fadeRight {
-            from {
-                opacity: 0;
-                transform: translateX(40px)
-            }
-
-            to {
-                opacity: 1;
-                transform: none
-            }
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:900px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                margin-top: 40px;
-            }
-        }
-
-        .qr-section {
-            background: #f7fafc;
-            padding: 90px 20px;
-        }
-
-        .qr-container {
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        .qr-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .qr-header h2 {
-            font-size: 34px;
-            font-weight: 700;
-            color: #0b3c6f;
-            margin-bottom: 8px;
-        }
-
-        .qr-header p {
-            font-size: 15px;
-            color: #6b7280;
-        }
-
-        /* GRID */
-        .qr-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-            justify-items: center;
-        }
-
-        /* CARD */
-        .qr-card {
-            background: #ffffff;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 22px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .08);
-            transition: .35s ease;
-        }
-
-        .qr-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 35px 80px rgba(0, 0, 0, .15);
-        }
-
-        /* QR IMAGE CENTER */
-        .qr-img {
-            width: 220px;
-            height: 220px;
-            margin: 0 auto 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 16px;
-            background: #f1f5f9;
-        }
-
-        .qr-img img {
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-        }
-
-        /* TEXT */
-        .qr-card h4 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #0b3c6f;
-            margin-bottom: 6px;
-        }
-
-        .qr-card span {
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:768px) {
-            .qr-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .qr-card {
-                max-width: 100%;
-            }
-        }
-
-        .qr-img{
-  position:relative;
-  width:170px;
-  height:170px;
-  margin:0 auto 25px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(255,255,255,0.12);
-  border-radius:18px;
-  overflow:hidden;
+<style>
+:root {
+    --primary: #0b4da2;
+    --secondary: #083a7a;
+    --light: #f4f8ff;
 }
 
-/* Pulse Ring */
-.qr-img::before{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  border:2px solid rgba(255,255,255,0.4);
-  animation:scanRing 2.8s ease-out infinite;
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
 }
 
-/* QR image pulse */
-.qr-img img{
-  width:130px;
-  border-radius:12px;
-  z-index:2;
-  animation:qrScanPulse 2.8s ease-in-out infinite;
+/* NAVBAR */
+.navbar {
+  transition: all 0.35s ease;
+  background: transparent;
 }
 
-/* Ring animation */
-@keyframes scanRing{
-  0%{
-    transform:scale(0.9);
-    opacity:0.6;
+.navbar.scrolled {
+  background: #0b3c6f;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Navbar links */
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  color: #dce9ff !important;
+}
+
+
+/* HERO */
+.hero {
+    background: url("images/hero.jpg") center/cover no-repeat;
+    position: relative;
+    padding: 130px 0;
+    color: #fff;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(11,77,162,0.65);
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+}
+.hero p {
+    font-size: 18px;
+}
+.btn-primary {
+    background: var(--primary);
+    border: none;
+    padding: 14px 32px;
+}
+
+/* SECTIONS */
+.section {
+    padding: 80px 0;
+}
+.section-title {
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+/* ABOUT ICONS */
+.about-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transition: 0.4s;
+}
+.about-box i {
+    font-size: 38px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+.about-box:hover {
+    transform: translateY(-8px);
+}
+
+/* CERTIFICATIONS – MODERN DESIGN */
+.certifications-modern {
+  background: #f8fafc;
+}
+
+/* LEFT SPINE */
+.cert-spine {
+  position: relative;
+  padding-left: 32px;
+  border-left: 3px solid #0b4da2;
+}
+
+.spine-item {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.spine-item span {
+  position: absolute;
+  left: -40px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: #0b4da2;
+  border-radius: 50%;
+}
+
+.spine-item.active span {
+  background: #e21f26;
+}
+
+.spine-item h6 {
+  font-weight: 600;
+  color: #0b3c6f;
+  margin-bottom: 6px;
+}
+
+.spine-item p {
+  font-size: 14px;
+  color: #5f6f86;
+}
+
+/* CERTIFICATION CARD */
+.cert-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  height: 100%;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.cert-card i {
+  font-size: 26px;
+  color: #0b4da2;
+  margin-bottom: 10px;
+}
+
+.cert-card h5 {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.cert-card p {
+  font-size: 14px;
+  color: #5f6f86;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.12);
+}
+
+/* WIDE CARD */
+.cert-card.wide {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .cert-spine {
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 30px;
   }
-  100%{
-    transform:scale(1.4);
-    opacity:0;
+
+  .spine-item span {
+    display: none;
   }
 }
 
-/* QR scale pulse */
-@keyframes qrScanPulse{
-  0%,100%{
-    transform:scale(1);
+
+/* PRODUCT CARD */
+.product-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+}
+
+/* PRODUCT IMAGE */
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* FEATURES */
+.product-features {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.product-features li {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #444;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover animation */
+.product-card:hover .product-features li {
+  transform: translateX(6px);
+  color: #0b4da2;
+}
+
+.product-features li i {
+  color: #0b4da2;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+/* CERTIFICATION BADGES */
+.certifications {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.certifications img {
+  height: 36px;
+  object-fit: contain;
+}
+
+/* CTA */
+.btn-outline-primary {
+  border-width: 2px;
+  font-weight: 500;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding: 80px 0;
+}
+
+.contact-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  background: #fff;
+}
+
+/* FORM BOX */
+.contact-box {
+  padding: 50px;
+  background: #ffffff;
+}
+
+.contact-box .form-control {
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.contact-box .btn-primary {
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* CONTACT DETAILS */
+.contact-details p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.contact-details i {
+  color: #0b4da2;
+  margin-right: 8px;
+}
+
+/* IMAGE PANEL */
+.contact-image {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  background: url("assets/img/Abu Dhabi Ruwais Palace (1).webp") center / cover no-repeat;
+}
+
+/* Overlay for professional look */
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to left,
+    rgba(11,77,162,0.85) 0%,
+    rgba(11,77,162,0.55) 40%,
+    rgba(11,77,162,0.15) 70%,
+    rgba(11,77,162,0) 100%
+  );
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+  .contact-box {
+    padding: 35px 25px;
   }
-  50%{
-    transform:scale(1.06);
+}
+/* ===== FOOTER ===== */
+.site-footer {
+  background: radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.08),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #071c33, #04101f);
+  color: #cfd8e3;
+  padding: 70px 0 0;
+  font-size: 14px;
+}
+
+/* BRAND */
+.footer-brand img {
+  max-width: 160px;
+  margin-bottom: 15px;
+}
+
+.footer-brand p {
+  color: #b8c4d6;
+  line-height: 1.6;
+}
+
+/* TITLES */
+.footer-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-title i {
+  color: #e21f26;
+  margin-right: 6px;
+}
+
+/* LINKS */
+.footer-links,
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #cfd8e3;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a i {
+  margin-right: 8px;
+  color: #9fb4d9;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+/* CONTACT */
+.footer-contact i {
+  margin-right: 10px;
+  color: #e21f26;
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom {
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding: 20px 0;
+  font-size: 13px;
+  color: #9fb4d9;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .site-footer {
+    text-align: center;
+  }
+
+  .footer-links a:hover {
+    padding-left: 0;
   }
 }
-
-.qr-card:hover .qr-img::before{
-  animation-duration:1.8s;
+/* ===== FLOATING ICON CTA ===== */
+.floating-cta-icons {
+  position: fixed;
+  right: 22px;
+  bottom: 28px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.qr-card:hover .qr-img img{
-  transform:scale(1.1);
-}
-
-
-        .leaflet-control-attribution {
-            display: none !important;
-        }
-
-
-        .certifications {
-            background: #ffffff;
-            padding: 100px 0;
-        }
-
-        .cert-header {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .cert-header h2 {
-            font-size: 36px;
-            color: #0b3c6f;
-        }
-
-        .cert-header span {
-            color: #e21f26;
-        }
-
-        .cert-header p {
-            max-width: 620px;
-            margin: 10px auto 0;
-            font-size: 15px;
-            opacity: .75;
-        }
-
-        /* TIMELINE */
-        .cert-timeline {
-            position: relative;
-            max-width: 900px;
-            margin: auto;
-            padding-left: 30px;
-        }
-
-        .cert-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #0b3c6f, #e21f26);
-            border-radius: 3px;
-        }
-
-        .cert-item {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 45px;
-        }
-
-        .cert-year {
-            min-width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: #0b3c6f;
-            color: #fff;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .2);
-        }
-
-        .cert-content h4 {
-            color: #0b3c6f;
-            margin-bottom: 6px;
-        }
-
-        .cert-content p {
-            font-size: 14px;
-            opacity: .8;
-        }
-
-        /* ANIMATION */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all .8s cubic-bezier(.4, 0, .2, 1);
-        }
-
-        .reveal.show {
-            opacity: 1;
-            transform: none;
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:768px) {
-            .cert-item {
-                gap: 20px;
-            }
-        }
-
-        .site-footer{
-  background:#0f1c2e;
-  color:#fff;
-  padding:40px 20px;
-}
-
-.footer-container{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:20px;
-  text-align:center;
-}
-
-.footer-brand img{
-  max-width:140px;
-}
-
-.footer-nav{
-  display:flex;
-  gap:25px;
-}
-
-.footer-nav a{
-  color:#fff;
-  font-size:14px;
-  transition:0.3s;
-}
-
-.footer-nav a:hover{
-  color:#e21f26;
-}
-
-.footer-copy{
-  font-size:13px;
-  opacity:0.85;
-}
-
-/* ===== CTA BASE ===== */
-.cta-left,
-.cta-right{
-  position:fixed;
-  bottom:30px;
-  z-index:9999;
-}
-
-/* Positions */
-.cta-left{ left:20px; }
-.cta-right{ right:20px; }
-
-.cta-btn{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:14px 18px;
-  border-radius:50px;
-  color:#fff;
-  font-weight:600;
-  font-size:14px;
-  box-shadow:0 18px 40px rgba(0,0,0,.3);
-  animation:shake 2.8s infinite;
-  transition:.35s ease;
-}
-
-.cta-btn small{
-  font-size:12px;
-  font-weight:400;
-  opacity:.9;
-}
-
-.cta-icon{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  background:rgba(255,255,255,.2);
+/* ICON BUTTON */
+.cta-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #ffffff;
+  text-decoration: none !important; /* ❌ no underline */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  position: relative;
+  animation: softShake 3.5s infinite;
+  transition: transform 0.3s ease;
 }
 
 /* CALL */
-.cta-btn.call{
-  background:linear-gradient(135deg,#0b3c6f,#062b4f);
+.cta-icon.call {
+  background: linear-gradient(135deg, #0b4da2, #083a7a);
 }
 
 /* WHATSAPP */
-.cta-btn.whatsapp{
-  background:linear-gradient(135deg,#25d366,#128c7e);
-  animation-delay:1.4s; /* stagger vibration */
+.cta-icon.whatsapp {
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
+  animation-delay: 1.5s;
+}
+
+/* HOVER */
+.cta-icon:hover {
+  transform: scale(1.08);
+}
+
+/* SOFT SHAKE (PROFESSIONAL) */
+@keyframes softShake {
+  0% { transform: translateX(0); }
+  2% { transform: translateX(-3px); }
+  4% { transform: translateX(3px); }
+  6% { transform: translateX(-3px); }
+  8% { transform: translateX(3px); }
+  10% { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+/* SUBTLE PULSE RING */
+.cta-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pulseRing 2.6s infinite;
+  opacity: 0.4;
+}
+
+.cta-icon.call::after {
+  background: rgba(11, 77, 162, 0.45);
+}
+
+.cta-icon.whatsapp::after {
+  background: rgba(37, 211, 102, 0.45);
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .floating-cta-icons {
+    right: 14px;
+    bottom: 20px;
+  }
+
+  .cta-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+}
+
+
+
+.hero-section {
+    min-height: 520px;
+    background: url("assets/img/banner1.png") no-repeat center center / cover;
+    position: relative;
+    color: #ffffff;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 45, 90, 0.75) 0%,
+        rgba(0, 45, 90, 0.55) 40%,
+        rgba(0, 45, 90, 0.15) 65%,
+        rgba(0, 45, 90, 0) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    max-width: 620px;
+    padding-top: 40px;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.hero-content p {
+    font-size: 17px;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.hero-content .btn-primary {
+    background: linear-gradient(135deg, #0b5ed7, #084298);
+    border: none;
+    padding: 12px 26px;
+    font-weight: 600;
+    border-radius: 6px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+.hero-content .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* HERO CAROUSEL */
+.hero-carousel,
+.hero-slide {
+  height: 100vh;
+}
+
+.hero-slide {
+  background-size: cover;
+  background-position: center right;
+  position: relative;
+}
+
+/* Overlay gradient like prototype */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(9,48,95,0.95) 0%,
+    rgba(9,48,95,0.75) 45%,
+    rgba(9,48,95,0.3) 70%,
+    rgba(9,48,95,0) 100%
+  );
+}
+
+/* Hero text */
+.hero-content {
+  max-width: 600px;
+  color: #fff;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-top: 15px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-slide {
+    background-position: center;
+  }
+}
+
+
+/* FEATURED PROJECT REFERENCES BACKGROUND */
+#projects {
+  background: linear-gradient(
+    180deg,
+    #0e3f7a 0%,
+    #114a8d 50%,
+    #0e3f7a 100%
+  );
+  position: relative;
+}
+
+#projects .section-title h2,
+#projects .section-title p {
+  color: #ffffff;
+}
+
+#projects .section-title p {
+  opacity: 0.85;
+}
+
+/* PROJECT TILE */
+.project-tile {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+  background: #000;
+}
+
+.project-tile img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Overlay */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.4) 45%,
+    rgba(0,0,0,0.1) 70%,
+    rgba(0,0,0,0) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+  color: #fff;
+}
+
+/* Location badge */
+.project-location {
+  font-size: 13px;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.project-overlay h5 {
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Hover effect */
+.project-tile:hover img {
+  transform: scale(1.08);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .project-tile img {
+    height: 200px;
+  }
+}
+
+
+/* ===== GLOBAL PRESENCE ===== */
+
+/* GLOBAL PRESENCE – MEDIUM DARK THEME */
+.global {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #0e3f7a 0%,     /* deep brand blue */
+    #114a8d 45%,    /* main background */
+    #0e3f7a 100%
+  );
+  padding: 90px 0;
+}
+
+/* Subtle light bloom for depth */
+.global::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top center,
+    rgba(255, 255, 255, 0.12),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.global .section-title h2,
+.global .section-title p {
+  color: #ffffff;
+}
+
+.global .section-title p {
+  opacity: 0.85;
+}
+
+
+.map-wrapper {
+  background: #eaf3ff;
+  padding: 18px;
+  border-radius: 22px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+#worldMap {
+  width: 100%;
+  height: 420px;
+  border-radius: 16px;
+}
+
+.map-note {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #worldMap {
+    height: 300px;
+  }
+}
+
+/* PROJECT TILES */
+.project-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.15);
+  background: #000;
+}
+
+.project-tile img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Overlay */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11,60,111,0.9) 0%,
+    rgba(11,60,111,0.6) 45%,
+    rgba(11,60,111,0.15) 70%,
+    rgba(11,60,111,0) 100%
+  );
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+/* Location badge */
+.project-location {
+  font-size: 13px;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+
+.project-overlay h5 {
+  font-weight: 600;
+  margin: 0;
 }
 
 /* Hover */
-.cta-btn:hover{
-  transform:translateY(-4px) scale(1.04);
-  animation-play-state:paused;
+.project-tile:hover img {
+  transform: scale(1.08);
 }
 
-/* Incoming call vibration */
-@keyframes shake{
-  0%{ transform:translateX(0); }
-  2%{ transform:translateX(-3px); }
-  4%{ transform:translateX(3px); }
-  6%{ transform:translateX(-3px); }
-  8%{ transform:translateX(3px); }
-  10%{ transform:translateX(0); }
-  100%{ transform:translateX(0); }
+
+/* ===== QR SECTION ===== */
+.qr-section {
+  background: linear-gradient(
+    180deg,
+    #f7fbff 0%,
+    #eef4fb 100%
+  );
+  padding: 90px 0;
 }
 
-/* Mobile – icon only */
-@media(max-width:768px){
-  .cta-text{ display:none; }
-  .cta-btn{
-    padding:14px;
-    border-radius:50%;
+/* HEADER */
+.qr-header h2 {
+  color: #0b3c6f;
+  font-size: 32px;
+}
+
+.qr-header h2 span {
+  color: #e21f26;
+}
+
+.qr-header p {
+  color: #5f6f86;
+  font-size: 15px;
+}
+
+/* QR CARD */
+.qr-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+  transition: transform 0.35s ease;
+}
+
+.qr-card:hover {
+  transform: translateY(-6px);
+}
+
+/* QR IMAGE */
+.qr-card img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+/* TITLE */
+.qr-card h5 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0b3c6f;
+  margin-bottom: 4px;
+}
+
+.qr-card h5 i {
+  color: #0b4da2;
+  margin-right: 6px;
+}
+
+/* SUBTEXT */
+.qr-card span {
+  font-size: 13px;
+  color: #6c7f9a;
+}
+
+/* PULSE EFFECT */
+.qr-pulse {
+  position: absolute;
+  inset: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  border-radius: 18px;
+  background: rgba(11,77,162,0.15);
+  animation: qrPulse 2.8s infinite;
+  z-index: 1;
+}
+
+@keyframes qrPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.5;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
-/* ===== HERO ===== */
-.hero{
-  min-height:100vh;
+/* MOBILE */
+@media (max-width: 576px) {
+  .qr-card img {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* STAY CONNECTED – MATCH GLOBAL PRESENCE THEME */
+.qr-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #0e3f7a 0%,
+    #114a8d 50%,
+    #0e3f7a 100%
+  );
+  padding: 90px 0;
+}
+
+/* Subtle depth highlight */
+.qr-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top center,
+    rgba(255,255,255,0.12),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+
+/* HEADER TEXT */
+.qr-header h2 {
+  color: #ffffff;
+}
+
+.qr-header p {
+  color: rgba(255,255,255,0.85);
+}
+
+.qr-card {
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+}
+
+/* ===== QR IMAGE WRAPPER ===== */
+.qr-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+/* QR IMAGE */
+.qr-wrapper img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 10px;
+}
+
+/* ===== TRUE PULSE EFFECT ===== */
+.qr-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  border-radius: 14px;
+  transform: translate(-50%, -50%);
+  background: rgba(11, 77, 162, 0.35);
+  animation: qrPulse 2.6s ease-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* PULSE ANIMATION */
+@keyframes qrPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.6;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 576px) {
+  .qr-wrapper img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .qr-pulse {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+
+/* WHY EHT SECTION */
+.why-eht {
+  background: #f7f9fc;
+}
+
+/* LEFT POINTS */
+.why-points {
+  list-style: none;
+  padding: 0;
+}
+
+.why-points li {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.why-points i {
+  color: #0b3c6f;
+  font-size: 18px;
+  margin-top: 4px;
+}
+
+.why-points strong {
+  display: block;
+  color: #0b3c6f;
+}
+
+.why-points span {
+  font-size: 14px;
+  color: #5f6f86;
+}
+
+/* COUNTER BOX */
+.counter-box {
+  background: linear-gradient(135deg, #0b4da2, #083a7a);
+  border-radius: 20px;
+  padding: 50px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.counter-item h3 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.counter-item p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .counter-box {
+    grid-template-columns: 1fr;
+    padding: 35px 25px;
+  }
+
+  .counter-item h3 {
+    font-size: 32px;
+  }
+}
+
+/* ===== HERO TYPOGRAPHY ANIMATIONS ===== */
+
+.hero-animate h1,
+.hero-animate p,
+.hero-animate .btn {
+  opacity: 0;
+}
+
+/* Heading animation */
+.hero-animate h1 {
+  animation: heroTitle 1s ease-out forwards;
+}
+
+/* Paragraph animation */
+.hero-animate p {
+  animation: heroText 1s ease-out forwards;
+  animation-delay: 0.35s;
+}
+
+/* Button animation */
+.hero-animate .btn {
+  animation: heroBtn 0.8s ease-out forwards;
+  animation-delay: 0.7s;
+}
+
+/* Keyframes */
+@keyframes heroTitle {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    letter-spacing: 1px;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
+}
+
+@keyframes heroText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroBtn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== PAGE LOADER ===== */
+#page-loader{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#062b4f,#0b3c6f);
   display:flex;
   align-items:center;
-  background:
-    linear-gradient(to right, rgba(11,60,111,.9), rgba(11,60,111,.75)),
-    url("assets/img/CYBERJAYA. MALAYSIA.webp") center/cover no-repeat;
+  justify-content:center;
+  z-index:10000;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+
+#page-loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+/* CONTENT */
+.loader-content{
+  text-align:center;
   color:#fff;
-  padding-top:80px; /* header offset */
+  animation:fadeScale .9s ease;
 }
 
-.hero-content{
-  max-width:720px;
+/* ICON */
+.loader-icon{
+  font-size:56px;
+  color:#ffffff;
+  margin-bottom:20px;
+  animation:drop 1.6s infinite ease-in-out;
 }
 
-.hero h1{
-  font-size:52px;
+/* TEXT */
+.loader-content h1{
+  font-size:34px;
   font-weight:700;
-  line-height:1.2;
-  margin-bottom:18px;
+  margin-bottom:10px;
 }
 
-.hero h1 span{
-  display:block;
+.loader-content h1 span{
+  color:#e21f26;
 }
 
-.hero p{
-  font-size:18px;
-  line-height:1.6;
-  opacity:.95;
-  max-width:560px;
+.loader-content p{
+  font-size:16px;
+  opacity:.9;
   margin-bottom:35px;
 }
 
-/* Buttons */
-.hero-actions{
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
+/* LOADING LINE */
+.loader-line{
+  width:220px;
+  height:4px;
+  background:rgba(255,255,255,.25);
+  border-radius:20px;
+  overflow:hidden;
+  margin:auto;
 }
 
-.btn{
-  padding:14px 32px;
-  border-radius:50px;
-  font-weight:600;
-  font-size:15px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  transition:.3s ease;
+.loader-line span{
+  display:block;
+  width:40%;
+  height:100%;
+  background:#ffffff;
+  border-radius:20px;
+  animation:loadingLine 1.6s infinite ease-in-out;
 }
 
-.btn-primary{
-  background:#e21f26;
-  color:#fff;
+/* ANIMATIONS */
+@keyframes loadingLine{
+  0%{ transform:translateX(-100%); }
+  50%{ transform:translateX(100%); }
+  100%{ transform:translateX(100%); }
 }
 
-.btn-primary:hover{
-  background:#c8191f;
-}
-
-.btn-outline{
-  border:2px solid #fff;
-  color:#fff;
-}
-
-.btn-outline:hover{
-  background:#fff;
-  color:#0b3c6f;
-}
-
-/* ===== TABLET ===== */
-@media(max-width:1024px){
-  .hero h1{
-    font-size:44px;
+@keyframes fadeScale{
+  from{
+    opacity:0;
+    transform:scale(.92);
+  }
+  to{
+    opacity:1;
+    transform:none;
   }
 }
 
-/* ===== MOBILE ===== */
+@keyframes drop{
+  0%{ transform:translateY(0); opacity:.6 }
+  50%{ transform:translateY(-10px); opacity:1 }
+  100%{ transform:translateY(0); opacity:.6 }
+}
+
+/* MOBILE */
 @media(max-width:768px){
-  .hero{
-    text-align:left;
-    padding:120px 0 80px;
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
-
-  .hero p{
-    font-size:15px;
-    margin-bottom:28px;
-  }
-
-  .hero-actions{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .btn{
-    width:100%;
-    text-align:center;
-  }
+  .loader-content h1{ font-size:26px; }
+  .loader-content p{ font-size:14px; }
 }
 
-/* ===== SMALL MOBILE ===== */
-@media(max-width:420px){
-  .hero h1{
-    font-size:30px;
-  }
-}
-
-    </style>
+</style>
 </head>
-<!-- Leaflet CSS & JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+
 
 <body>
 
-    <header id="header">
-        <div class="container nav">
-            <div class="logo" style="font-weight:700;">EHT <span>WATER TANKS</span></div>
-            
-            <div class="menu" onclick="toggleMenu()">☰</div>
-            <ul id="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Contact</a></li>
+    <!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-content">
+
+    <!-- Water Icon -->
+    <div class="loader-icon">
+      <i class="fi fi-rr-water"></i>
+    </div>
+
+    <h1>Welcome to  EHT Water Tanks</h1>
+    <p>Where Quality Meets Capacity</p>
+
+    <div class="loader-line">
+      <span></span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FLOATING ICON CTA -->
+<div class="floating-cta-icons">
+
+  <!-- CALL -->
+  <a href="tel:+919845526313" class="cta-icon call" aria-label="Call EHT Water Tanks">
+    <i class="fa-solid fa-phone-volume"></i>
+  </a>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/919845526313" target="_blank" class="cta-icon whatsapp" aria-label="WhatsApp EHT Water Tanks">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+</div>
+
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+<div class="container">
+<a class="navbar-brand fw-bold" href="#">EHT Water Tanks</a>
+<button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="#about"><i class="fa-solid fa-circle-info"></i> About</a></li>
+<li class="nav-item"><a class="nav-link" href="#products"><i class="fa-solid fa-layer-group"></i> Products</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact"><i class="fa-solid fa-phone-volume"></i> Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- HERO CAROUSEL -->
+<section class="hero-carousel" >
+  <div id="heroSlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+      <button data-bs-target="#heroSlider" data-bs-slide-to="0" class="active"></button>
+      <button data-bs-target="#heroSlider" data-bs-slide-to="1"></button>
+      <button data-bs-target="#heroSlider" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active hero-slide"
+           style="background-image:url('assets/img/banner1.png')">
+        <div class="hero-overlay"></div>
+        <div class="container h-100 d-flex align-items-center">
+          <div class="hero-content" data-aos="fade-right">
+            <h1>Premium Water Storage Solutions</h1>
+            <p>
+              Manufacturing high-quality sectional water tanks<br>
+              for industrial & commercial use.
+            </p>
+            <a href="#products" class="btn btn-primary mt-3">
+              Explore Products
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item hero-slide"
+           style="background-image:url('assets/img/banner2.png')">
+        <div class="hero-overlay"></div>
+        <div class="container h-100 d-flex align-items-center">
+          <div class="hero-content" data-aos="fade-right">
+            <h1>WRAS & NSF Certified Tanks</h1>
+            <p>Engineered for hygiene, durability & global standards.</p>
+            <a href="#contact" class="btn btn-primary mt-3">
+              Get a Quote
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item hero-slide"
+           style="background-image:url('assets/img/banner3.png')">
+        <div class="hero-overlay"></div>
+        <div class="container h-100 d-flex align-items-center">
+          <div class="hero-content" data-aos="fade-right">
+            <h1>Trusted Across 50+ Countries</h1>
+            <p>Industrial water storage solutions since 1987.</p>
+            <a href="#projects" class="btn btn-primary mt-3">
+              View Projects
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE EHT -->
+<section class="section why-eht">
+  <div class="container">
+
+    <!-- TITLE -->
+    <div class="section-title text-center mb-5" data-aos="fade-up">
+      <h2 class="fw-bold">
+        Why Choose EHT Water Tanks ?
+      </h2>
+      <p class="fw-bold">
+        Engineering excellence, certified safety & global project delivery
+      </p>
+    </div>
+
+    <div class="row align-items-center g-5">
+
+      <!-- LEFT CONTENT -->
+      <div class="col-lg-6" data-aos="fade-right">
+        <ul class="why-points">
+          <li>
+            <i class="fa-solid fa-certificate"></i>
+            <div>
+              <strong>WRAS & NSF Certified</strong>
+              <span>International approvals for potable water safety</span>
+            </div>
+          </li>
+
+          <li>
+            <i class="fa-solid fa-cloud-sun"></i>
+            <div>
+              <strong>Weather & UV Resistant</strong>
+              <span>Designed for extreme climates & outdoor installations</span>
+            </div>
+          </li>
+
+          <li>
+            <i class="fa-solid fa-user-gear"></i>
+            <div>
+              <strong>Expert Engineering</strong>
+              <span>Decades of engineering experience & proven designs</span>
+            </div>
+          </li>
+
+          <li>
+            <i class="fa-solid fa-sliders"></i>
+            <div>
+              <strong>Custom Built Solutions</strong>
+              <span>Tailored capacities, layouts & commissioning schedules</span>
+            </div>
+          </li>
+
+          <li>
+            <i class="fa-solid fa-earth-asia"></i>
+            <div>
+              <strong>Global Support Network</strong>
+              <span>Local partners with fast installation & service support</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT COUNTERS -->
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="counter-box">
+
+          <div class="counter-item">
+            <h3 class="counter" data-target="35">0</h3>
+            <p>Years of Experience</p>
+          </div>
+
+          <div class="counter-item">
+            <h3 class="counter" data-target="10000">0</h3>
+            <p>Projects Completed</p>
+          </div>
+
+          <div class="counter-item">
+            <h3 class="counter" data-target="50">0</h3>
+            <p>Countries Served</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- OUR CERTIFICATIONS -->
+<section class="section certifications-modern">
+  <div class="container">
+
+    <!-- SECTION HEADER -->
+    <div class="section-title text-center mb-5" data-aos="fade-up">
+      <h2 class="fw-bold">
+        Our Certifications
+      </h2>
+      <p class="fw-bold">
+        International standards validating quality, safety & engineering excellence
+      </p>
+    </div>
+
+    <div class="row align-items-center g-5">
+
+      <!-- LEFT – CERTIFICATION SPINE -->
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="cert-spine">
+
+          <div class="spine-item">
+            <span></span>
+            <h6>Potable Water Safety</h6>
+            <p>Globally approved certifications for drinking water storage</p>
+          </div>
+
+          <div class="spine-item">
+            <span></span>
+            <h6>Quality Management</h6>
+            <p>Certified systems ensuring consistent manufacturing excellence</p>
+          </div>
+
+          <div class="spine-item">
+            <span></span>
+            <h6>Regional Compliance</h6>
+            <p>Approved by regional authorities for regulated installations</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT – CERTIFICATION CARDS -->
+      <div class="col-lg-7">
+        <div class="row g-4">
+
+          <div class="col-md-6" data-aos="zoom-in">
+            <div class="cert-card">
+              <i class="fa-solid fa-droplet"></i>
+              <h5>WRAS Approval</h5>
+              <p>
+                Water regulation compliance for safe potable water storage
+                applications.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="cert-card">
+              <i class="fa-solid fa-check"></i>
+              <h5>NSF Certified</h5>
+              <p>
+                Certified to NSF / ANSI 61 standards for potable water systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="cert-card">
+              <i class="fa-solid fa-award"></i>
+              <h5>ISO 9001 : 2015</h5>
+              <p>
+                Quality management systems ensuring consistent product excellence.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="cert-card">
+              <i class="fa-solid fa-building-shield"></i>
+              <h5>SPAN Certified</h5>
+              <p>
+                Approved for regulated water storage systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-12" data-aos="zoom-in" data-aos-delay="400">
+            <div class="cert-card wide">
+              <i class="fa-solid fa-shield"></i>
+              <h5>SLS Certified</h5>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- GLOBAL PRESENCE -->
+<section class="global" id="global">
+  <div class="container">
+
+
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+ 
+      <h2 class="fw-bold">
+         Our Global Presence</span>
+      </h2>
+
+      <p class="fw-bold">
+Trusted distribution partners across key global markets
+      </p>
+    </div>
+
+
+    <div class="map-wrapper" data-aos="zoom-in">
+      <div id="worldMap"></div>
+      <p class="map-note">
+        Distributor Network • Middle East • Asia • South Asia
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="container">
+
+        <!-- SECTION HEADER -->
+    <div class="section-title text-center mb-5" data-aos="fade-up">
+      <h2 class="fw-bold">
+        Our Products
+      </h2>
+      <p class="fw-bold">
+        Engineered water tank solutions designed for performance & durability
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- GRP TANK -->
+      <div class="col-md-4" data-aos="fade-up" style="cursor:pointer">
+        <div class="product-card h-100">
+
+          <img src="assets/img/grp_tank.png" alt="GRP Sectional Tank">
+
+          <div class="p-4">
+            <h5 class="section-title">
+              GRP Sectional Panel Water Tank
+            </h5>
+
+            <p>
+              High-strength GRP tanks engineered for hygienic and
+              corrosion-resistant storage.
+            </p>
+
+            <ul class="product-features">
+              <li><i class="fa-solid fa-shield-halved"></i> Corrosion Resistant</li>
+              <li><i class="fa-solid fa-feather"></i> Lightweight</li>
+              <li><i class="fa-solid fa-infinity"></i> Long Lifespan</li>
+              <li><i class="fa-solid fa-screwdriver-wrench"></i> Easy Maintenance</li>
             </ul>
+
+    
+          </div>
         </div>
-    </header>
+      </div>
 
-  <section class="hero">
-  <div class="container hero-content fade">
-    <h1>
-      Global Leader in <br>
-      <span>GRP & Industrial Water Tank Solutions</span>
-    </h1>
+      <!-- PRESSED STEEL -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="150" style="cursor:pointer">
+        <div class="product-card h-100">
 
-    <p>
-      Delivering premium water storage systems trusted across
-      50+ countries since 1987.
-    </p>
+          <img src="assets/img/press_steel_tank.png" alt="Pressed Steel Tank">
 
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">Get Free Quote</a>
-      <a href="#products" class="btn btn-outline">View Products</a>
+          <div class="p-4">
+            <h5 class="section-title">
+              Pressed Steel Sectional Water Tank
+            </h5>
+
+            <p>
+              Industrial-grade pressed steel tanks designed for
+              demanding environments.
+            </p>
+
+            <ul class="product-features">
+              <li><i class="fa-solid fa-hammer"></i> High Strength</li>
+              <li><i class="fa-solid fa-gear"></i> Industrial Grade</li>
+              <li><i class="fa-solid fa-tags"></i> Cost Effective</li>
+              <li><i class="fa-solid fa-check-double"></i> Reliable</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- STAINLESS STEEL -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300" style="cursor:pointer">
+        <div class="product-card h-100">
+
+          <img src="assets/img/pressed_sectional_tank.png" alt="Stainless Steel Tank">
+
+          <div class="p-4">
+            <h5 class="section-title">
+              Stainless Steel Sectional Water Tank
+            </h5>
+
+            <p>
+              Premium hygienic stainless steel tanks for critical
+              water storage applications.
+            </p>
+
+            <ul class="product-features">
+              <li><i class="fa-solid fa-circle-check"></i> 100% Hygienic</li>
+              <li><i class="fa-solid fa-star"></i> Premium Quality</li>
+              <li><i class="fa-solid fa-shield-virus"></i> Ultra Durable</li>
+              <li><i class="fa-solid fa-ban"></i> Rust-Free</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-    <section class="stats">
-        <div class="container stats-grid">
-            <div class="stat fade">
-                <h2 class="counter">35</h2>
-                <p>Years Experience</p>
-            </div>
-            <div class="stat fade">
-                <h2 class="counter">10000</h2>
-                <p>Projects Completed</p>
-            </div>
-            <div class="stat fade">
-                <h2 class="counter">50</h2>
-                <p>Countries Served</p>
-            </div>
-            <div class="stat fade">
-                <h2 class="counter">100</h2>
-                <p>% Satisfaction</p>
-            </div>
-        </div>
-    </section>
+<!-- FEATURED PROJECT REFERENCES -->
+<section class="section bg-light" id="projects">
+  <div class="container">
 
-    <section>
-        <div class="container">
-            <div class="section-title fade">
-<h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Why To Choose Our</span>
-  <span style="color:#e21f26;"> EHT Water Tanks</span>
-</h2>
-                <p>Engineering excellence & corporate reliability</p>
-            </div>
+    <!-- Section Header -->
+    <div class="section-title text-center mb-5" data-aos="fade-up">
+      <!-- <h2 class="fw-bold">
+        Featured <span style="color:#e21f26;">Project References</span>
+      </h2> -->
 
-            <div class="features">
+      <h2 class="fw-bold">
+        Featured Project References</span>
+      </h2>
 
-                <div class="feature fade">
-                    <div class="feature-icon cert"></div>
-                    <h4>WRAS & NSF Certified</h4>
-                    <p>
-                        Ensures safe potable water compliance.
-                    </p>
-
-                </div>
-
-                <div class="feature fade">
-                    <div class="feature-icon weather"></div>
-                    <h4>Weather Resistant</h4>
-                    <p>Designed to perform in extreme climates.</p>
-                </div>
-
-                <div class="feature fade">
-                    <div class="feature-icon engineering"></div>
-                    <h4>Expert Engineering</h4>
-                    <p>35+ years of proven industry expertise.</p>
-                </div>
-
-                <div class="feature fade">
-                    <div class="feature-icon custom"></div>
-                    <h4>Custom Solutions</h4>
-                    <p>Tailor-made water storage systems.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="global">
-        <div class="container">
-            <div class="section-title fade">
-               <h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Our</span>
-  <span style="color:#e21f26;">Global Presence</span>
-</h2>
-                <p>Delivering excellence across 50+ countries with prestigious projects worldwide</p>
-            </div>
-
-            <div class="global-grid">
-                <!-- MAP -->
-                <div class="map-box fade">
-                    <div id="worldMap"></div>
-                    <p class="map-note">Operating Across 6 Continents • 50+ Countries</p>
-                </div>
-
-                <!-- LOCATIONS -->
-                <div class="locations fade">
-                    <div class="location blue">
-                        <h4>Dubai, UAE</h4>
-                        <p>Pressed Steel Sectional Tanks</p>
-                    </div>
-                    <div class="location red">
-                        <h4>Singapore</h4>
-                        <p>Stainless Steel Tanks</p>
-                    </div>
-                    <div class="location blue">
-                        <h4>Jakarta, Indonesia</h4>
-                        <p>Pressed Stainless Steel Tanks</p>
-                    </div>
-                    <div class="location red">
-                        <h4>Bangkok, Thailand</h4>
-                        <p>GRP Sectional Tanks</p>
-                    </div>
-                    <div class="location blue">
-                        <h4>Taipei, Taiwan</h4>
-                        <p>Premium Water Storage</p>
-                    </div>
-                    <div class="location red">
-                        <h4>Pucallpa, Peru</h4>
-                        <p>Industrial Water Solutions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="projects">
-        <div class="container">
-            <div class="section-title fade-up">
-                <h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Featured</span>
-  <span style="color:#e21f26;">Project References</span>
-</h2>
-            </div>
-
-            <div class="project-grid">
-                <div class="project-card fade-up">
-                    <img src="assets/img/Abu%20Dhabi%20Ruwais%20Palace%20(1).webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Dubai, UAE</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/QATAR02.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Qatar</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/CYBERJAYA. MALAYSIA.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">CyberJaya, Malysia</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/SINGAPORE.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Singapore</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/JOHOR. MALAYSIA (1).webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Johor, Malysia</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <img src="assets/img/NEGERI SEMBILAN 2, MALAYSIA - Copy.webp">
-                    <div class="project-overlay"></div>
-                    <div class="project-content">
-                        <span class="tag">Negeri Sembilan, Malysia</span>
-                        <h4>GRP Sectional Tanks</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="premium-products">
-        <div class="container">
-            <div class="section-title fade-up">
-            
-                 <h2 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Our</span>
-  <span style="color:#e21f26;">Premium Product Ranges</span>
-</h2>
-                <p>Engineered water tank solutions designed for performance & durability</p>
-            </div>
-
-            <div class="premium-grid">
-
-                <!-- PRODUCT 1 -->
-                <div class="premium-card fade-up">
-                    <div class="image-box">
-                        <img src="assets/img/UITM Melaka Pic (1).webp">
-                    </div>
-                    <div class="content-box">
-                        <h4>GRP Sectional Panel Water Tank</h4>
-                        <p>High-strength GRP tanks engineered for hygienic and corrosion-resistant storage.</p>
-                        <ul>
-                            <li>Corrosion Resistant</li>
-                            <li>Lightweight</li>
-                            <li>Long Lifespan</li>
-                            <li>Easy Maintenance</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- PRODUCT 2 -->
-                <div class="premium-card fade-up">
-                    <div class="image-box">
-                        <img src="assets/img/robotic-welding2 ss.webp">
-                    </div>
-                    <div class="content-box">
-                        <h4>Pressed Steel Sectional Water Tank</h4>
-                        <p>Industrial-grade pressed steel tanks designed for demanding environments.</p>
-                        <ul>
-                            <li>High Strength</li>
-                            <li>Industrial Grade</li>
-                            <li>Cost Effective</li>
-                            <li>Reliable</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- PRODUCT 3 -->
-                <div class="premium-card fade-up">
-                    <div class="image-box">
-                        <img src="assets/img/IMG_8361  ss2.webp">
-                    </div>
-                    <div class="content-box">
-                        <h4>Stainless Steel Sectional Water Tank</h4>
-                        <p>Premium hygienic stainless steel tanks for critical water storage applications.</p>
-                        <ul>
-                            <li>100% Hygienic</li>
-                            <li>Premium Quality</li>
-                            <li>Ultra Durable</li>
-                            <li>Rust-Free</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="certifications">
-        <div class="container">
-            <div class="cert-header reveal">
-                <h2>Our <span>Certifications</span></h2>
-                <p>Internationally recognized standards that validate our quality, safety, and engineering excellence
-                </p>
-            </div>
-
-            <div class="cert-timeline">
-
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">WRAS</div>
-                    <div class="cert-content">
-                        <h4>WRAS Approval</h4>
-                        <p>Water regulation compliance for safe potable water storage.</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">NSF</div>
-                    <div class="cert-content">
-                        <h4>NSF Certified</h4>
-                        <p>Certified To NSF / ANSI 61</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">ISO</div>
-                    <div class="cert-content">
-                        <h4>ISO 9001 : 2015</h4>
-                        <p>Quality Management System ensuring consistent product excellence.</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">SLS</div>
-                    <div class="cert-content">
-                        <h4>Sri Lankan Standards</h4>
-                        <p>SLS Mark indicates that the product complies with specific Sri Lankan quality and safety
-                            standards</p>
-                    </div>
-                </div>
-
-                <div class="cert-item reveal">
-                    <div class="cert-year">SPAN</div>
-                    <div class="cert-content">
-                        <h4>Suruhanjaya Perkhidmatan Air Negara</h4>
-                        <p></p>SPAN certification ensures that products international standards for safety & hygiene</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="contact-section">
-        <div class="contact-container">
-
-            <!-- LEFT : CONTACT INFO -->
-            <div class="contact-info">
-                <h3>Scedule Site Visit</h3>
-
-                <div class="info-item">
-                    <span class="icon phone"></span>
-                    <div>
-                        <h5>Call Us Now</h5>
-                        <p>+91 9845526313<br>+91 8035911686</p>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon whatsapp"></span>
-                    <div>
-                        <h5>WhatsApp Us</h5>
-                        <p>+91 9845526313</p>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon email"></span>
-                    <div>
-                        <h5>Email Us</h5>
-                        <p>info@ehtwatertanks.com</p>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon location"></span>
-                    <div>
-                        <h5>Visit Our Office</h5>
-                        <p>
-                            No. 10, 3rd Floor, Johar Complex,<br>
-                            Mosque Rd, Basavanagudi,<br>
-                            Bangalore, Karnataka – 560004
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RIGHT : FORM -->
-            <div class="contact-form">
-            <h3 style="font-weight:700;">
-  <span style="color:#0b3c6f;">Enquiry</span>
-  <span style="color:#e21f26;">Now</span>
-</h3>
-                       <p>Our specialists will help you choose the right tank system.</p>
-
-                <form>
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="tel" placeholder="Phone" required>
-                    <textarea placeholder="Project Requirements"></textarea>
-                    <button type="submit">Submit Request</button>
-                </form>
-            </div>
-
-        </div>
-    </section>
-
-   <section class="qr-section">
-  <div class="qr-container">
-
-    <div class="qr-header fade-up">
-      <h2>Stay Connected</h2>
-      <p>Follow us on LinkedIn or visit our website by scanning the QR codes</p>
+      <p class="fw-bold">
+        Successful project executions across the Middle East, Asia & global markets
+      </p>
     </div>
 
-    <div class="qr-grid">
+    <!-- Project Grid -->
+    <div class="row g-4">
 
-      <!-- LinkedIn QR -->
-      <div class="qr-card scale-in">
-        <div class="qr-img">
+      <!-- Project Card -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="project-tile">
+          <img src="assets/img/Abu Dhabi Ruwais Palace (1).webp" alt="Dubai GRP Tank">
+          <div class="project-overlay">
+            <span class="project-location">
+              <i class="fa-solid fa-location-dot"></i> Dubai, UAE
+            </span>
+            <h5>GRP Sectional Tanks</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-tile">
+          <img src="assets/img/QATAR02 (1).webp" alt="Qatar GRP Tank">
+          <div class="project-overlay">
+            <span class="project-location">
+              <i class="fa-solid fa-location-dot"></i> Qatar
+            </span>
+            <h5>GRP Sectional Tanks</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-tile">
+          <img src="assets/img/CYBERJAYA. MALAYSIA (1).webp" alt="Cyberjaya Malaysia">
+          <div class="project-overlay">
+            <span class="project-location">
+              <i class="fa-solid fa-location-dot"></i> Cyberjaya, Malaysia
+            </span>
+            <h5>GRP Sectional Tanks</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="project-tile">
+          <img src="assets/img/SINGAPORE.webp" alt="Singapore GRP Tank">
+          <div class="project-overlay">
+            <span class="project-location">
+              <i class="fa-solid fa-location-dot"></i> Singapore
+            </span>
+            <h5>GRP Sectional Tanks</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-tile">
+          <img src="assets/img/JOHOR. MALAYSIA (1).webp" alt="Johor Malaysia">
+          <div class="project-overlay">
+            <span class="project-location">
+              <i class="fa-solid fa-location-dot"></i> Johor, Malaysia
+            </span>
+            <h5>GRP Sectional Tanks</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-tile">
+          <img src="assets/img/NEGERI SEMBILAN 2, MALAYSIA - Copy.webp" alt="Negeri Sembilan">
+          <div class="project-overlay">
+            <span class="project-location">
+              <i class="fa-solid fa-location-dot"></i> Negeri Sembilan, Malaysia
+            </span>
+            <h5>GRP Sectional Tanks</h5>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="section contact-section bg-light" id="contact">
+  <div class="container">
+    <div class="row align-items-stretch g-0 contact-wrapper">
+
+      <!-- FORM -->
+      <div class="col-lg-6 col-md-12" data-aos="fade-right">
+        <div class="contact-box h-100">
+          <h3 class="section-title mb-4">Schedule Site Visit</h3>
+
+          <form>
+            <input type="text" class="form-control mb-3" placeholder="Name" required>
+            <input type="email" class="form-control mb-3" placeholder="Email" required>
+            <input type="text" class="form-control mb-3" placeholder="Phone">
+            <textarea class="form-control mb-4" rows="4" placeholder="Project Requirements"></textarea>
+
+            <button class="btn btn-primary w-100">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+
+          <!-- CONTACT DETAILS -->
+          <div class="contact-details mt-4">
+            <p><i class="fa-solid fa-location-dot"></i> No.10, 3rd Floor, Johar Complex, Mosque Rd, Basavanagudi, Bangalore – 560004</p>
+            <p><i class="fa-solid fa-phone"></i> +91 98455 26313 / +91 80359 11686</p>
+            <p><i class="fa-solid fa-envelope"></i> info@ehtwatertanks.com</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMAGE PANEL -->
+      <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left">
+        <div class="contact-image">
+          <div class="image-overlay"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STAY CONNECTED -->
+<section class="qr-section">
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="qr-header text-center mb-5" data-aos="fade-up">
+      <h2 class="fw-bold">
+        Stay Connected
+      </h2>
+      <p>
+        Follow us on LinkedIn or visit our website by scanning the QR codes
+      </p>
+    </div>
+
+    <!-- QR GRID -->
+    <div class="row justify-content-center g-4">
+
+      <!-- LINKEDIN QR -->
+      <div class="col-md-4 col-sm-6" data-aos="fade-up">
+        <div class="qr-card">
+          
+         
+         <div class="qr-wrapper">
+  <span class="qr-pulse"></span>
           <img src="assets/img/qr_code/eht_water_tank_linkedin.png" alt="LinkedIn QR">
+</div>
+          <h5>
+            <i class="fa-brands fa-linkedin"></i> Follow Us on LinkedIn
+          </h5>
+          <span>@EHT Water Tanks</span>
         </div>
-        <h4>Follow Us on LinkedIn</h4>
-        <span>@EHT Water Tanks</span>
       </div>
 
-      <!-- Website QR -->
-      <div class="qr-card scale-in">
-        <div class="qr-img">
+      <!-- WEBSITE QR -->
+      <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+        <div class="qr-card">
+         
+           <div class="qr-wrapper">
+  <span class="qr-pulse"></span>
           <img src="assets/img/qr_code/eht_water_tank_qr.png" alt="Website QR">
+</div> 
+          <h5>
+            <i class="fa-solid fa-globe"></i> Visit Our Website
+          </h5>
+          <span>www.ehtwatertanks.com</span>
         </div>
-        <h4>Visit Our Website</h4>
-        <span>www.ehtwatertanks.com</span>
       </div>
 
     </div>
@@ -1789,165 +1921,231 @@
 </section>
 
 
-  <footer class="site-footer">
-  <div class="footer-container">
 
-    <!-- Logo -->
-    <div class="footer-brand">
-      <img src="assets/img/eht-logo.webp" alt="EHT Water Tanks Logo">
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- BRAND -->
+      <div class="col-lg-4 col-md-6 text-white">
+        <div class="footer-brand">
+          <img src="assets/img/eht-logo.webp" alt="EHT Water Tanks Logo">
+          <p>
+            EHT Water Tanks delivers WRAS & NSF certified GRP and
+            industrial water tank solutions trusted worldwide since 1987.
+          </p>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="col-lg-4 col-md-6 text-white">
+        <h5 class="footer-title">
+          <i class="fa-solid fa-link"></i> Quick Links
+        </h5>
+        <ul class="footer-links">
+          <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="#about"><i class="fa-solid fa-circle-info"></i> About</a></li>
+          <li><a href="#products"><i class="fa-solid fa-layer-group"></i> Products</a></li>
+          <li><a href="#projects"><i class="fa-solid fa-briefcase"></i> Projects</a></li>
+          <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="col-lg-4 col-md-12">
+        <h5 class="footer-title">
+          <i class="fa-solid fa-phone"></i> Contact Us
+        </h5>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-phone"></i> +91 98455 26313</li>
+          <li><i class="fa-solid fa-envelope"></i> info@ehtwatertanks.com</li>
+          <li><i class="fa-solid fa-location-dot"></i> Bangalore, Karnataka, India</li>
+        </ul>
+      </div>
+
     </div>
+  </div>
 
-    <!-- Navigation -->
-    <nav class="footer-nav" aria-label="Footer Navigation">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- Copyright -->
-    <div class="footer-copy">
-      <p>© 2025 <strong>EHT Water Tanks Pvt. Ltd.</strong> All Rights Reserved.</p>
+  <!-- FOOTER BOTTOM -->
+  <div class="footer-bottom">
+    <div class="container text-center text-white">
+      <p>
+        © 2025 <strong>EHT Water Tanks Pvt. Ltd.</strong> All Rights Reserved.<br>
+        Designed & Developed by <strong>DHK</strong>
+      </p>
     </div>
-
   </div>
 </footer>
 
-<!-- Floating Call & WhatsApp CTA -->
-<div class="cta-left">
-  <a href="tel:+919845526313" class="cta-btn call" aria-label="Call EHT Water Tanks">
-    <span class="cta-icon">📞</span>
-    <span class="cta-text">
-      Call Now<br>
-      <small>+91 98455 26313</small>
-    </span>
-  </a>
-</div>
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+    duration: 1000,
+    once: true
+});
+</script>
 
-<div class="cta-right">
-  <a href="https://wa.me/919845526313" target="_blank" class="cta-btn whatsapp" aria-label="WhatsApp EHT Water Tanks">
-    <span class="cta-icon">💬</span>
-    <span class="cta-text">
-      WhatsApp<br>
-      <small>+91 98455 26313</small>
-    </span>
-  </a>
-</div>
+<script>
+  window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 80);
+  });
+</script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <script>
-        /* Sticky Header */
-        window.addEventListener("scroll", () => {
-            document.getElementById("header")
-                .classList.toggle("scrolled", window.scrollY > 50);
-        });
 
-        /* Mobile Menu */
-        function toggleMenu() {
-            document.getElementById("menu").classList.toggle("active");
+<script>
+  AOS.init({ once: true });
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  /* INIT MAP */
+  const map = L.map('worldMap', {
+    zoomControl: false,
+    scrollWheelZoom: false,
+    attributionControl: false
+  }).setView([18, 70], 3); // Middle East + Asia focus
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    opacity: 0.9
+  }).addTo(map);
+
+  /* DISTRIBUTOR DATA (FIXED & CONSISTENT) */
+  const locations = [
+    {
+      company: "EHT Water Tanks Pvt. Ltd.",
+      place: "Bengaluru, India",
+      coords: [12.9716, 77.5946]
+    },
+    {
+      company: "Potaglas Marketing Sdn Bhd",
+      place: "Penang, Malaysia",
+      coords: [5.4141, 100.3288]
+    },
+    {
+      company: "Potaglas Malaysia Sdn Bhd",
+      place: "Selangor, Malaysia",
+      coords: [3.0738, 101.5183]
+    },
+    {
+      company: "Engineering & Trading Partner",
+      place: "Singapore",
+      coords: [1.3521, 103.8198]
+    },
+    {
+      company: "Regional Water Solutions",
+      place: "Abu Dhabi, UAE",
+      coords: [24.4539, 54.3773]
+    },
+    {
+      company: "International Trading Partner",
+      place: "Sharjah, UAE",
+      coords: [25.3463, 55.4209]
+    },
+    {
+      company: "Water Tank & Storage Systems",
+      place: "Doha, Qatar",
+      coords: [25.2854, 51.5310]
+    },
+    {
+      company: "Contracting & Infrastructure Partner",
+      place: "Bahrain",
+      coords: [26.0667, 50.5577]
+    },
+    // {
+    //   company: "Strategic Projects Partner",
+    //   place: "Mumbai, India",
+    //   coords: [19.0760, 72.8777]
+    // },
+    {
+      company: "Industrial Storage Solutions",
+      place: "Riyadh, Saudi Arabia",
+      coords: [24.7136, 46.6753]
+    }
+  ];
+
+  /* ADD MARKERS */
+  locations.forEach(loc => {
+    L.marker(loc.coords)
+      .addTo(map)
+      .bindPopup(`
+        <div style="min-width:180px;">
+          <strong style="font-size:13px;">${loc.company}</strong><br>
+          <span style="font-size:12px;color:#555;">${loc.place}</span>
+        </div>
+      `)
+      .bindTooltip(loc.place, {
+        direction: "top",
+        offset: [0, -12],
+        opacity: 0.9
+      });
+  });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const counters = document.querySelectorAll(".counter");
+  let counterStarted = false;
+
+  const animateCounters = () => {
+    if (counterStarted) return;
+    counterStarted = true;
+
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+
+      // Faster speed for large numbers
+      const speed = target >= 10000 ? 80 : 150;
+
+      const updateCount = () => {
+        const current = +counter.innerText.replace(/,/g, "");
+        const increment = Math.ceil(target / speed);
+
+        if (current < target) {
+          counter.innerText = (current + increment).toLocaleString();
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target.toLocaleString() + "+";
         }
+      };
 
-        /* Scroll Animations */
-        const fades = document.querySelectorAll('.fade');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) e.target.classList.add('show');
-            });
-        }, { threshold: .2 });
-        fades.forEach(f => observer.observe(f));
+      updateCount();
+    });
+  };
 
-        /* Counter Animation */
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(counter => {
-            let start = 0;
-            let end = +counter.innerText;
-            let step = end / 80;
-            const update = () => {
-                start += step;
-                if (start < end) {
-                    counter.innerText = Math.floor(start);
-                    requestAnimationFrame(update);
-                } else {
-                    counter.innerText = end;
-                }
-            }
-            update();
-        });
+  // Trigger when section is visible
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
 
+  observer.observe(document.querySelector(".why-eht"));
 
-    </script>
+});
+</script>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script>
-        const map = L.map('worldMap', {
-            zoomControl: false,
-            scrollWheelZoom: false,
-            attributionControl: false   // ✅ Hides Leaflet | © OpenStreetMap
-        }).setView([20, 0], 2);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-        /* Locations */
-        const locations = [
-            { name: "Dubai, UAE", coords: [25.2048, 55.2708] },
-            { name: "Singapore", coords: [1.3521, 103.8198] },
-            { name: "Jakarta, Indonesia", coords: [-6.2088, 106.8456] },
-            { name: "Bangkok, Thailand", coords: [13.7563, 100.5018] },
-            { name: "Taipei, Taiwan", coords: [25.0330, 121.5654] },
-            { name: "Pucallpa, Peru", coords: [-8.3791, -74.5539] }
-        ];
-
-        locations.forEach(loc => {
-            L.marker(loc.coords)
-                .addTo(map)
-                .bindPopup(`<strong>${loc.name}</strong>`);
-        });
-    </script>
-
-
-    <script>
-        const projectCards = document.querySelectorAll('.project-card');
-
-        const projectObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        projectCards.forEach(card => projectObserver.observe(card));
-    </script>
-
-    <script>
-        const premiumCards = document.querySelectorAll('.premium-card');
-
-        const premiumObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        premiumCards.forEach(card => premiumObserver.observe(card));
-    </script>
-
-
-    <script>
-        const revealEls = document.querySelectorAll('.reveal');
-        const revealObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) e.target.classList.add('show');
-            });
-        }, { threshold: 0.2 });
-        revealEls.forEach(el => revealObs.observe(el));
-    </script>
-
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("page-loader").classList.add("hide");
+    }, 1200);
+  });
+</script>
 
 
 </body>
-
 </html>
