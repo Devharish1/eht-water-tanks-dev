@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Thank You | EHT Water Tanks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0b4da2;
+  --secondary:#083a7a;
+  --light:#f4f8ff;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#0e3f7a,#114a8d,#0e3f7a);
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== WATER FLOW BACKGROUND ===== */
+.water-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top,rgba(255,255,255,.15),transparent 60%),
+    linear-gradient(180deg,rgba(255,255,255,.06),transparent 60%);
+  pointer-events:none;
+}
+
+/* ===== CENTER CARD ===== */
+.thankyou-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  z-index:2;
+}
+
+.thankyou-card{
+  background:#ffffff;
+  color:#0b3c6f;
+  border-radius:22px;
+  padding:60px 40px;
+  max-width:560px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,.35);
+}
+
+/* ===== SUCCESS ICON ===== */
+.success-icon{
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#0b4da2,#083a7a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 25px;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  animation:pulse 2.2s infinite;
+}
+
+.success-icon i{
+  font-size:42px;
+  color:#fff;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);box-shadow:0 0 0 rgba(11,77,162,.5)}
+  70%{transform:scale(1.08);box-shadow:0 0 35px rgba(11,77,162,.0)}
+  100%{transform:scale(1)}
+}
+
+/* ===== TEXT ===== */
+.thankyou-card h1{
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.thankyou-card p{
+  font-size:15px;
+  color:#5f6f86;
+  line-height:1.6;
+}
+
+/* ===== INFO STRIP ===== */
+.info-strip{
+  background:#f4f8ff;
+  border-radius:14px;
+  padding:15px;
+  margin:25px 0;
+  font-size:14px;
+  color:#0b3c6f;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary{
+  background:linear-gradient(135deg,#0b4da2,#083a7a);
+  border:none;
+  padding:12px 28px;
+  font-weight:600;
+  border-radius:8px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.btn-outline{
+  border:2px solid #0b4da2;
+  color:#0b4da2;
+  padding:12px 26px;
+  border-radius:8px;
+  font-weight:600;
+  background:#fff;
+}
+
+.btn-outline:hover{
+  background:#0b4da2;
+  color:#fff;
+}
+
+/* ===== FOOT NOTE ===== */
+.support-note{
+  margin-top:25px;
+  font-size:13px;
+  color:#6c7f9a;
+}
+
+/* MOBILE */
+@media(max-width:576px){
+  .thankyou-card{
+    padding:45px 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="water-bg"></div>
+
+<div class="thankyou-wrapper">
+  <div class="thankyou-card" data-aos="zoom-in">
+
+    <!-- ICON -->
+    <div class="success-icon">
+      <i class="fa-solid fa-check"></i>
+    </div>
+
+    <!-- CONTENT -->
+    <h1>Thank You!</h1>
+    <p>
+      Your enquiry has been successfully submitted.<br>
+      Our engineering team will review your requirement and contact you shortly.
+    </p>
+
+    <!-- INFO -->
+    <div class="info-strip">
+      <i class="fa-solid fa-droplet"></i>
+      GRP & Industrial Water Tank Solutions<br>
+      Trusted Across 50+ Countries Since 1987
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="index.html" class="btn btn-primary">
+        <i class="fa-solid fa-house"></i> Back to Home
+      </a>
+
+      <a href="https://wa.me/919845526313" target="_blank" class="btn btn-outline">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+      </a>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="support-note">
+      Need immediate assistance?<br>
+      Call us at <strong>+91 98455 26313</strong>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration:900, once:true });
+</script>
+
+</body>
+</html>
