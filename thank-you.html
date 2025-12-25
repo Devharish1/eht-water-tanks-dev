@@ -21,37 +21,85 @@
 :root{
   --primary:#0b4da2;
   --secondary:#083a7a;
-  --light:#f4f8ff;
 }
 
+/* ================= BASE ================= */
 body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(180deg,#0e3f7a,#114a8d,#0e3f7a);
   color:#fff;
   min-height:100vh;
+  padding-top:72px;
   overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
 }
 
-/* ===== WATER FLOW BACKGROUND ===== */
-.water-bg{
+/* ================= HEADER ================= */
+.navbar{
+  background:rgba(11,60,111,.95);
+  backdrop-filter:blur(6px);
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+}
+.navbar-brand{
+  font-weight:700;
+  color:#fff !important;
+}
+
+/* ===== NAV WHATSAPP SHAKE ===== */
+.nav-whatsapp{
+  position:relative;
+  animation:navShake 4.5s infinite;
+}
+
+.nav-whatsapp::after{
+  content:"";
   position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  background:rgba(37,211,102,.45);
+  z-index:-1;
+  animation:navPulse 2.8s infinite;
+}
+
+@keyframes navShake{
+  0%{transform:translateX(0)}
+  2%{transform:translateX(-3px)}
+  4%{transform:translateX(3px)}
+  6%{transform:translateX(-3px)}
+  8%{transform:translateX(3px)}
+  10%{transform:translateX(0)}
+  100%{transform:translateX(0)}
+}
+
+@keyframes navPulse{
+  0%{transform:scale(.9);opacity:.5}
+  100%{transform:scale(1.6);opacity:0}
+}
+
+/* ================= WATER BG ================= */
+.water-bg{
+  position:fixed;
   inset:0;
   background:
     radial-gradient(circle at top,rgba(255,255,255,.15),transparent 60%),
     linear-gradient(180deg,rgba(255,255,255,.06),transparent 60%);
   pointer-events:none;
+  z-index:0;
 }
 
-/* ===== CENTER CARD ===== */
-.thankyou-wrapper{
-  min-height:100vh;
+/* ================= MAIN ================= */
+.main-content{
+  flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
+  padding:40px 15px;
   position:relative;
-  z-index:2;
+  z-index:1;
 }
 
+/* ================= CARD ================= */
 .thankyou-card{
   background:#ffffff;
   color:#0b3c6f;
@@ -63,7 +111,7 @@ body{
   box-shadow:0 25px 60px rgba(0,0,0,.35);
 }
 
-/* ===== SUCCESS ICON ===== */
+/* ================= ICON ================= */
 .success-icon{
   width:96px;
   height:96px;
@@ -73,7 +121,6 @@ body{
   align-items:center;
   justify-content:center;
   margin:0 auto 25px;
-  box-shadow:0 15px 35px rgba(0,0,0,.3);
   animation:pulse 2.2s infinite;
 }
 
@@ -83,24 +130,12 @@ body{
 }
 
 @keyframes pulse{
-  0%{transform:scale(1);box-shadow:0 0 0 rgba(11,77,162,.5)}
-  70%{transform:scale(1.08);box-shadow:0 0 35px rgba(11,77,162,.0)}
+  0%{transform:scale(1)}
+  70%{transform:scale(1.08)}
   100%{transform:scale(1)}
 }
 
-/* ===== TEXT ===== */
-.thankyou-card h1{
-  font-weight:700;
-  margin-bottom:12px;
-}
-
-.thankyou-card p{
-  font-size:15px;
-  color:#5f6f86;
-  line-height:1.6;
-}
-
-/* ===== INFO STRIP ===== */
+/* ================= INFO ================= */
 .info-strip{
   background:#f4f8ff;
   border-radius:14px;
@@ -110,14 +145,13 @@ body{
   color:#0b3c6f;
 }
 
-/* ===== BUTTONS ===== */
+/* ================= BUTTONS ================= */
 .btn-primary{
   background:linear-gradient(135deg,#0b4da2,#083a7a);
   border:none;
   padding:12px 28px;
   font-weight:600;
   border-radius:8px;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
 .btn-outline{
@@ -129,79 +163,404 @@ body{
   background:#fff;
 }
 
-.btn-outline:hover{
-  background:#0b4da2;
-  color:#fff;
+/* ================= FOOTER ================= */
+.site-footer{
+  background:linear-gradient(180deg,#071c33,#04101f);
+  color:#cfd8e3;
+  padding:50px 0 25px;
+  font-size:14px;
+  margin-top:auto;
 }
 
-/* ===== FOOT NOTE ===== */
-.support-note{
-  margin-top:25px;
-  font-size:13px;
-  color:#6c7f9a;
-}
-
-/* MOBILE */
+/* ================= MOBILE ================= */
 @media(max-width:576px){
-  .thankyou-card{
-    padding:45px 25px;
+  .thankyou-card{padding:45px 25px}
+}
+
+/* ===============================
+   FOOTER BASE
+================================ */
+
+.site-footer {
+  background: radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.08),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #071c33, #04101f);
+  color: #cfd8e3;
+  padding: 70px 0 0;
+  font-size: 14px;
+  position: relative;
+}
+
+/* ===============================
+   BRAND
+================================ */
+
+.footer-brand img {
+  max-width: 160px;
+  margin-bottom: 15px;
+}
+
+.footer-tagline {
+  color: #b8c4d6;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.footer-tagline strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.footer-tagline span {
+  color: #dce9ff;
+  font-weight: 500;
+}
+
+.footer-tagline em {
+  font-style: normal;
+  color: #e21f26;
+  font-weight: 500;
+}
+
+/* ===============================
+   TITLES
+================================ */
+
+.footer-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-title i {
+  color: #e21f26;
+  margin-right: 6px;
+}
+
+/* ===============================
+   LINKS & CONTACT
+================================ */
+
+.footer-links,
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #cfd8e3;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a i {
+  margin-right: 8px;
+  color: #9fb4d9;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.footer-links a:hover i {
+  color: #e21f26;
+}
+
+/* Contact icons */
+.footer-contact i {
+  margin-right: 10px;
+  color: #e21f26;
+}
+
+/* ===============================
+   SOCIAL ICONS
+================================ */
+
+.footer-social {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  background: #e21f26;
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   FOOTER BOTTOM
+================================ */
+
+.footer-bottom {
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding: 20px 0;
+  font-size: 13px;
+  color: #9fb4d9;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  .site-footer {
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-links a:hover {
+    transform: none;
   }
 }
+
+
+/* ===============================
+   QUICK LINKS – ENHANCED HOVER
+================================ */
+
+.footer-links a {
+  position: relative;
+  padding-left: 0;
+}
+
+/* Arrow indicator */
+.footer-links a::before {
+  content: "›";
+  position: absolute;
+  left: -12px;
+  opacity: 0;
+  color: #e21f26;
+  transition: all 0.3s ease;
+}
+
+/* Hover animation */
+.footer-links a:hover {
+  color: #ffffff;
+  padding-left: 14px;
+}
+
+.footer-links a:hover::before {
+  opacity: 1;
+  left: 0;
+}
+
+.footer-links a:hover i {
+  color: #e21f26;
+}
+
+
+/* ===============================
+   MOBILE – FORCE LEFT ALIGN
+================================ */
+
+@media (max-width: 768px) {
+
+  .site-footer,
+  .site-footer * {
+    text-align: left !important;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
+
+  .footer-links a {
+    padding-left: 0;
+  }
+
+  .footer-links a::before {
+    display: none; /* cleaner on mobile */
+  }
+
+  .footer-bottom {
+    text-align: left !important;
+  }
+}
+
+
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+<nav class="navbar fixed-top">
+  <div class="container d-flex align-items-center">
+    <a class="navbar-brand" href="index.html">EHT Water Tanks</a>
+    <div class="ms-auto">
+      <a href="https://wa.me/919845526313"
+         target="_blank"
+         class="btn btn-success btn-sm nav-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
 <div class="water-bg"></div>
 
-<div class="thankyou-wrapper">
+<!-- MAIN -->
+<div class="main-content">
   <div class="thankyou-card" data-aos="zoom-in">
 
-    <!-- ICON -->
     <div class="success-icon">
       <i class="fa-solid fa-check"></i>
     </div>
 
-    <!-- CONTENT -->
     <h1>Thank You!</h1>
     <p>
       Your enquiry has been successfully submitted.<br>
-      Our engineering team will review your requirement and contact you shortly.
+      Our engineering team will contact you shortly.
     </p>
 
-    <!-- INFO -->
     <div class="info-strip">
-      <i class="fa-solid fa-droplet"></i>
+      <i class="fa-solid fa-droplet"></i><br>
       GRP & Industrial Water Tank Solutions<br>
-      Trusted Across 50+ Countries Since 1987
+      <strong>Trusted Across 50+ Countries Since 1987</strong>
     </div>
 
-    <!-- ACTIONS -->
     <div class="d-flex justify-content-center gap-3 flex-wrap">
       <a href="index.html" class="btn btn-primary">
         <i class="fa-solid fa-house"></i> Back to Home
       </a>
-
       <a href="https://wa.me/919845526313" target="_blank" class="btn btn-outline">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
       </a>
     </div>
 
-    <!-- SUPPORT -->
-    <div class="support-note">
+    <div class="mt-4 small text-muted">
       Need immediate assistance?<br>
-      Call us at <strong>+91 98455 26313</strong>
+      Call <strong>+91 98455 26313</strong>
     </div>
 
   </div>
 </div>
 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- BRAND -->
+      <div class="col-lg-4 col-md-6 text-white">
+        <div class="footer-brand">
+          <img src="assets/img/eht-logo.webp" alt="EHT Water Tanks Logo">
+          <p class="footer-tagline">
+            <strong>EHT Water Tanks</strong> delivers
+            <span>WRAS & NSF certified</span> GRP and industrial
+            water tank solutions <em>trusted worldwide</em> since 1987.
+          </p>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="col-lg-4 col-md-6 text-white">
+        <h5 class="footer-title">
+          <i class="fa-solid fa-link"></i> Quick Links
+        </h5>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="index.html#about"><i class="fa-solid fa-circle-info"></i> About</a></li>
+          <li><a href="index.html#products"><i class="fa-solid fa-layer-group"></i> Products</a></li>
+          <li><a href="index.html#projects"><i class="fa-solid fa-briefcase"></i> Projects</a></li>
+          <li><a href="index.html#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="col-lg-4 col-md-12 text-white">
+        <h5 class="footer-title">
+          <i class="fa-solid fa-phone"></i> Contact Us
+        </h5>
+
+        <ul class="footer-contact">
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+919845526313" class="text-decoration-none text-white">
+              +91 98455 26313
+            </a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            info@ehtwatertanks.com
+          </li>
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            Bangalore, Karnataka, India
+          </li>
+        </ul>
+
+        <!-- SOCIAL LINKS -->
+        <div class="footer-social mt-3">
+          <a href="https://www.linkedin.com/company/eht-water-tanks/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="EHT Water Tanks LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+
+          <a href="https://www.facebook.com/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="EHT Water Tanks Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER BOTTOM -->
+  <div class="footer-bottom">
+    <div class="container text-center text-white">
+      <p class="mb-0">
+        © 2025 <strong>EHT WATER TANKS PRIVATE LIMITED</strong> All Rights Reserved.<br>
+        Designed & Developed by <strong>DHK</strong>
+      </p>
+    </div>
+  </div>
+</footer>
+
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-AOS.init({ duration:900, once:true });
-</script>
+<script>AOS.init({duration:900,once:true});</script>
 
 </body>
 </html>

@@ -22,6 +22,9 @@
 <!-- Flaticon Icons -->
 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
 <style>
 :root {
@@ -420,6 +423,7 @@ html {
     padding: 35px 25px;
   }
 }
+
 /* ===== FOOTER ===== */
 .site-footer {
   background: radial-gradient(
@@ -511,10 +515,11 @@ html {
     padding-left: 0;
   }
 }
-/* ===== FLOATING ICON CTA ===== */
+
+/* ===== FLOATING ICON CTA (RIGHT SIDE) ===== */
 .floating-cta-icons {
   position: fixed;
-  left: 22px;      /* 👈 move to left */
+  right: 22px;     /* 👈 moved to right */
   bottom: 28px;
   z-index: 9999;
   display: flex;
@@ -596,10 +601,10 @@ html {
   }
 }
 
-/* MOBILE */
+
 @media (max-width: 768px) {
   .floating-cta-icons {
-    left: 14px;    /* 👈 mobile left */
+    right: 14px;   /* 👈 mobile right */
     bottom: 20px;
   }
 
@@ -923,39 +928,22 @@ html {
 }
 
 
-/* ===== QR SECTION ===== */
+/* ===============================
+   QR SECTION BASE
+================================ */
+
 .qr-section {
-  background: linear-gradient(
-    180deg,
-    #f7fbff 0%,
-    #eef4fb 100%
-  );
-  padding: 90px 0;
+  padding: 80px 0;
+  background: #0e3f7a;
 }
 
-/* HEADER */
-.qr-header h2 {
-  color: #0b3c6f;
-  font-size: 32px;
-}
-
-.qr-header h2 span {
-  color: #e21f26;
-}
-
-.qr-header p {
-  color: #5f6f86;
-  font-size: 15px;
-}
-
-/* QR CARD */
+/* Card */
 .qr-card {
-  position: relative;
   background: #ffffff;
   border-radius: 18px;
-  padding: 35px 25px;
+  padding: 30px 25px;
   text-align: center;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
   transition: transform 0.35s ease;
 }
 
@@ -963,169 +951,124 @@ html {
   transform: translateY(-6px);
 }
 
-/* QR IMAGE */
-.qr-card img {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
-  margin-bottom: 18px;
+/* ===============================
+   QR WRAPPER
+================================ */
+
+.qr-wrapper {
   position: relative;
-  z-index: 2;
-}
-
-/* TITLE */
-.qr-card h5 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #0b3c6f;
-  margin-bottom: 4px;
-}
-
-.qr-card h5 i {
-  color: #0b4da2;
-  margin-right: 6px;
-}
-
-/* SUBTEXT */
-.qr-card span {
-  font-size: 13px;
-  color: #6c7f9a;
-}
-
-/* PULSE EFFECT */
-.qr-pulse {
-  position: absolute;
-  inset: 50%;
-  width: 180px;
-  height: 180px;
-  transform: translate(-50%, -50%);
-  border-radius: 18px;
-  background: rgba(11,77,162,0.15);
-  animation: qrPulse 2.8s infinite;
-  z-index: 1;
-}
-
-@keyframes qrPulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0.5;
-  }
-  70% {
-    transform: translate(-50%, -50%) scale(1.15);
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* MOBILE */
-@media (max-width: 576px) {
-  .qr-card img {
-    width: 140px;
-    height: 140px;
-  }
-}
-
-/* STAY CONNECTED – MATCH GLOBAL PRESENCE THEME */
-.qr-section {
-  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 20px;
+  border-radius: 16px;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    #0e3f7a 0%,
-    #114a8d 50%,
-    #0e3f7a 100%
-  );
-  padding: 90px 0;
 }
 
-/* Subtle depth highlight */
-.qr-section::before {
+/* QR image */
+.qr-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  position: relative;
+  z-index: 3;
+}
+
+/* ===============================
+   PULSE EFFECT (MARKETING)
+================================ */
+
+.pulse-scan::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at top center,
-    rgba(255,255,255,0.12),
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-
-/* HEADER TEXT */
-.qr-header h2 {
-  color: #ffffff;
-}
-
-.qr-header p {
-  color: rgba(255,255,255,0.85);
-}
-
-.qr-card {
-  background: #ffffff;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.25);
-}
-
-/* ===== QR IMAGE WRAPPER ===== */
-.qr-wrapper {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 18px;
-}
-
-/* QR IMAGE */
-.qr-wrapper img {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
-  position: relative;
-  z-index: 2;
-  background: #fff;
-  border-radius: 10px;
-}
-
-/* ===== TRUE PULSE EFFECT ===== */
-.qr-pulse {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 180px;
-  height: 180px;
-  border-radius: 14px;
-  transform: translate(-50%, -50%);
-  background: rgba(11, 77, 162, 0.35);
+  border-radius: 50%;
+  background: rgba(14, 63, 122, 0.35);
   animation: qrPulse 2.6s ease-out infinite;
   z-index: 1;
-  pointer-events: none;
 }
 
-/* PULSE ANIMATION */
 @keyframes qrPulse {
   0% {
-    transform: translate(-50%, -50%) scale(0.85);
-    opacity: 0.6;
-  }
-  70% {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0;
+    transform: scale(0.9);
+    opacity: 0.5;
   }
   100% {
+    transform: scale(1.45);
     opacity: 0;
   }
 }
 
-/* MOBILE */
-@media (max-width: 576px) {
-  .qr-wrapper img {
-    width: 140px;
-    height: 140px;
-  }
+/* ===============================
+   SCANNING LINE
+================================ */
 
-  .qr-pulse {
-    width: 160px;
-    height: 160px;
+.scan-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(14, 63, 122, 0.9),
+    transparent
+  );
+  z-index: 4;
+  animation: scanMove 2.6s ease-in-out infinite;
+}
+
+@keyframes scanMove {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    top: 100%;
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* ===============================
+   TEXT & LINKS
+================================ */
+
+.qr-card h5 {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.qr-link {
+  color: #0e3f7a;
+  text-decoration: none !important;
+}
+
+.qr-link:hover,
+.qr-link:focus,
+.qr-link:active {
+  color: #083a7a;
+  text-decoration: none !important;
+}
+
+.qr-card span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 576px) {
+  .qr-wrapper {
+    width: 150px;
+    height: 150px;
   }
 }
 
@@ -1358,6 +1301,191 @@ html {
   .loader-content p{ font-size:14px; }
 }
 
+
+/* ===============================
+   FOOTER MOBILE LEFT ALIGN
+================================ */
+@media (max-width: 767px) {
+
+  .site-footer,
+  .site-footer .text-center {
+    text-align: left !important;
+  }
+
+  .site-footer .footer-brand img {
+    margin-left: 0;
+  }
+
+  .site-footer .footer-links,
+  .site-footer .footer-contact {
+    padding-left: 0;
+  }
+
+  .site-footer .footer-bottom p {
+    text-align: left !important;
+  }
+}
+
+/* FOOTER SOCIAL ICONS */
+.footer-social {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  background: #e21f26;
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   FOOTER HOVER THEME COLORS
+================================ */
+
+/* Footer links */
+.footer-links a,
+.footer-contact li {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for links */
+.footer-links a:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+/* Contact hover */
+.footer-contact li:hover {
+  color: #dce9ff;
+}
+
+/* Icons inside footer */
+.footer-links a i,
+.footer-contact i {
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover i,
+.footer-contact li:hover i {
+  color: #e21f26;
+}
+
+/* ===============================
+   FOOTER TYPO REVEAL ANIMATION
+================================ */
+
+.footer-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: footerFadeUp 1.2s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes footerFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   FOOTER BRAND TYPOGRAPHY
+================================ */
+
+.footer-tagline {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #b8c4d6;
+  letter-spacing: 0.3px;
+  max-width: 360px;
+}
+
+/* Brand name */
+.footer-tagline strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Certifications highlight */
+.footer-tagline span {
+  color: #dce9ff;
+  font-weight: 500;
+}
+
+/* Trust emphasis */
+.footer-tagline em {
+  font-style: normal;
+  color: #e21f26;
+  font-weight: 500;
+}
+
+.footer-contact a:hover {
+  color: #e21f26;
+}
+
+/* ===============================
+   HEADER GET QUOTE CTA ANIMATION
+================================ */
+
+.header-cta {
+  position: relative;
+  animation: headerShake 4.5s infinite;
+}
+
+/* Pulse ring */
+.header-cta::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 6px;
+  background: rgba(226, 31, 38, 0.45);
+  z-index: -1;
+  animation: headerPulse 2.8s infinite;
+}
+
+/* Shake animation (short & professional) */
+@keyframes headerShake {
+  0% { transform: translateX(0); }
+  2% { transform: translateX(-3px); }
+  4% { transform: translateX(3px); }
+  6% { transform: translateX(-3px); }
+  8% { transform: translateX(3px); }
+  10% { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+/* Pulse ring animation */
+@keyframes headerPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+/* Mobile safe sizing */
+@media (max-width: 768px) {
+  .header-cta::after {
+    inset: -4px;
+  }
+}
+
 </style>
 </head>
 
@@ -1402,6 +1530,7 @@ html {
 
 
 
+
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
 
@@ -1438,11 +1567,12 @@ html {
             <i class="fa-solid fa-briefcase"></i> Projects
           </a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#contact">
-            <i class="fa-solid fa-paper-plane"></i> Get Quote
-          </a>
-        </li>
+        <a href="#contact" 
+   class="btn btn-danger btn-sm ms-3 header-cta"
+   aria-label="Get Instant Quote">
+  <i class="fa-solid fa-paper-plane"></i> Get Quote
+</a>
+        
        
       </ul>
     </div>
@@ -1548,6 +1678,7 @@ html {
       </p>
     </div>
 
+    
     <div class="row align-items-center g-5">
 
       <!-- LEFT CONTENT -->
@@ -1635,6 +1766,7 @@ html {
         International standards validating quality, safety & engineering excellence
       </p>
     </div>
+    
 
     <div class="row align-items-center g-5">
 
@@ -1743,9 +1875,10 @@ Trusted distribution partners across key global markets
 
     <div class="map-wrapper" data-aos="zoom-in">
       <div id="worldMap"></div>
-      <p class="map-note">
-        Distributor Network • Middle East • Asia • South Asia
-      </p>
+     <p class="text-center fw-bold mt-3" data-aos="fade-up">
+  Trusted by developers, contractors & government projects worldwide
+</p>
+
     </div>
 
   </div>
@@ -1791,7 +1924,11 @@ Trusted distribution partners across key global markets
               <li><i class="fa-solid fa-screwdriver-wrench"></i> Easy Maintenance</li>
             </ul>
 
-    
+<a href="#contact" class="btn btn-outline-primary w-100 mt-3">
+  Get Price & Specifications
+</a>
+
+
           </div>
         </div>
       </div>
@@ -1819,6 +1956,11 @@ Trusted distribution partners across key global markets
               <li><i class="fa-solid fa-check-double"></i> Reliable</li>
             </ul>
 
+            <a href="#contact" class="btn btn-outline-primary w-100 mt-3">
+  Get Price & Specifications
+</a>
+
+
           </div>
         </div>
       </div>
@@ -1839,12 +1981,19 @@ Trusted distribution partners across key global markets
               water storage applications.
             </p>
 
-            <ul class="product-features">
-              <li><i class="fa-solid fa-circle-check"></i> 100% Hygienic</li>
-              <li><i class="fa-solid fa-star"></i> Premium Quality</li>
-              <li><i class="fa-solid fa-shield-virus"></i> Ultra Durable</li>
-              <li><i class="fa-solid fa-ban"></i> Rust-Free</li>
-            </ul>
+          <ul class="product-features">
+  <li><i class="fa-solid fa-circle-check"></i> 100% Hygienic</li>
+  <li><i class="fa-solid fa-star"></i> Premium Quality</li>
+  <li><i class="fa-solid fa-shield-virus"></i> Ultra Durable</li>
+  <li><i class="fa-solid fa-ban"></i> Rust-Free</li>
+  <li><i class="fa-solid fa-screwdriver-wrench"></i> Easy Maintenance</li>
+</ul>
+
+<a href="#contact" class="btn btn-outline-primary w-100 mt-3">
+  Get Price & Specifications
+</a>
+
+
 
           </div>
         </div>
@@ -1964,21 +2113,104 @@ Trusted distribution partners across key global markets
         <div class="contact-box h-100">
           <h3 class="section-title mb-4">Schedule Site Visit</h3>
 
-          <form>
-            <input type="text" class="form-control mb-3" placeholder="Name" required>
-            <input type="email" class="form-control mb-3" placeholder="Email" required>
-            <input type="text" class="form-control mb-3" placeholder="Phone">
-            <textarea class="form-control mb-4" rows="4" placeholder="Project Requirements"></textarea>
+   <form class="row g-3">
 
-            <button class="btn btn-primary w-100">
-              <i class="fa-solid fa-paper-plane"></i> Send Message
-            </button>
-          </form>
+  <!-- NAME -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">
+      Name <span class="text-danger">*</span>
+    </label>
+    <input type="text" class="form-control" placeholder="Name" required>
+  </div>
+
+  <!-- COMPANY NAME -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">
+      Company Name <span class="text-muted">(Optional)</span>
+    </label>
+    <input type="text" class="form-control" placeholder="Company Name">
+  </div>
+
+  <!-- EMAIL -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">
+      Email <span class="text-danger">*</span>
+    </label>
+    <input type="email" class="form-control" placeholder="Email" required>
+  </div>
+
+  <!-- PHONE -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">
+      Phone <span class="text-danger">*</span>
+    </label>
+    <input type="text" class="form-control" placeholder="Phone" required>
+  </div>
+
+  <!-- COUNTRY -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">
+      Country <span class="text-danger">*</span>
+    </label>
+    <select id="country" class="form-control" required>
+      <option value="">Select Country</option>
+    </select>
+  </div>
+
+  <!-- STATE -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">
+      State / Province <span class="text-danger">*</span>
+    </label>
+    <select id="state" class="form-control" required disabled>
+      <option value="">Select State</option>
+    </select>
+  </div>
+
+  <!-- REQUIREMENTS -->
+  <div class="col-12">
+    <label class="form-label fw-semibold">
+      Project Requirements <span class="text-danger">*</span>
+    </label>
+    <textarea class="form-control" rows="3"
+      placeholder="Project Requirements" required></textarea>
+  </div>
+
+  <!-- PRIVACY NOTE -->
+  <div class="col-12">
+    <p class="text-muted small mb-1">
+      <i class="fa-solid fa-lock"></i> We respect your privacy. No spam.
+    </p>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="col-12">
+    <button class="btn btn-primary w-100">
+      <i class="fa-solid fa-paper-plane"></i> Send Message
+    </button>
+
+    <p class="small text-muted mt-2 text-start">
+      Response within 24 hours
+    </p>
+  </div>
+
+</form>
+
+
 
           <!-- CONTACT DETAILS -->
           <div class="contact-details mt-4">
             <p><i class="fa-solid fa-location-dot"></i> No.10, 3rd Floor, Johar Complex, Mosque Rd, Basavanagudi, Bangalore – 560004</p>
-            <p><i class="fa-solid fa-phone"></i> +91 98455 26313 / +91 80359 11686</p>
+<p>
+  <i class="fa-solid fa-phone"></i>
+  <a href="tel:+919845526313" class="text-decoration-none text-dark">
+    +91 98455 26313
+  </a>
+  /
+  <a href="tel:+918035911686" class="text-decoration-none text-dark">
+    +91 80359 11686
+  </a>
+</p>
             <p><i class="fa-solid fa-envelope"></i> info@ehtwatertanks.com</p>
           </div>
         </div>
@@ -2001,10 +2233,8 @@ Trusted distribution partners across key global markets
 
     <!-- HEADER -->
     <div class="qr-header text-center mb-5" data-aos="fade-up">
-      <h2 class="fw-bold">
-        Stay Connected
-      </h2>
-      <p>
+      <h2 class="fw-bold text-white">Stay Connected</h2>
+      <p class="text-white-50">
         Follow us on LinkedIn or visit our website by scanning the QR codes
       </p>
     </div>
@@ -2015,31 +2245,46 @@ Trusted distribution partners across key global markets
       <!-- LINKEDIN QR -->
       <div class="col-md-4 col-sm-6" data-aos="fade-up">
         <div class="qr-card">
-          
-         
-         <div class="qr-wrapper">
-  <span class="qr-pulse"></span>
-          <img src="assets/img/qr_code/eht_water_tank_linkedin.png" alt="LinkedIn QR">
-</div>
+
+          <div class="qr-wrapper pulse-scan">
+            <span class="scan-line"></span>
+            <img src="assets/img/qr_code/eht_water_tank_linkedin.png" alt="LinkedIn QR">
+          </div>
+
           <h5>
-            <i class="fa-brands fa-linkedin"></i> Follow Us on LinkedIn
+            <a href="https://www.linkedin.com/company/eht-water-tanks/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="qr-link">
+              <i class="fa-brands fa-linkedin"></i> Follow Us on LinkedIn
+            </a>
           </h5>
+
           <span>@EHT Water Tanks</span>
+
         </div>
       </div>
 
       <!-- WEBSITE QR -->
       <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
         <div class="qr-card">
-         
-           <div class="qr-wrapper">
-  <span class="qr-pulse"></span>
-          <img src="assets/img/qr_code/eht_water_tank_qr.png" alt="Website QR">
-</div> 
+
+          <div class="qr-wrapper pulse-scan">
+            <span class="scan-line"></span>
+            <img src="assets/img/qr_code/eht_water_tank_qr.png" alt="Website QR">
+          </div>
+
           <h5>
-            <i class="fa-solid fa-globe"></i> Visit Our Website
+            <a href="https://www.ehtwatertanks.com"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="qr-link">
+              <i class="fa-solid fa-globe"></i> Visit Our Website
+            </a>
           </h5>
+
           <span>www.ehtwatertanks.com</span>
+
         </div>
       </div>
 
@@ -2058,10 +2303,12 @@ Trusted distribution partners across key global markets
       <div class="col-lg-4 col-md-6 text-white">
         <div class="footer-brand">
           <img src="assets/img/eht-logo.webp" alt="EHT Water Tanks Logo">
-          <p>
-            EHT Water Tanks delivers WRAS & NSF certified GRP and
-            industrial water tank solutions trusted worldwide since 1987.
-          </p>
+         <p class="footer-tagline">
+  <strong>EHT Water Tanks</strong> delivers
+  <span>WRAS & NSF certified</span> GRP and industrial
+  water tank solutions <em>trusted worldwide</em> since 1987.
+</p>
+
         </div>
       </div>
 
@@ -2079,17 +2326,40 @@ Trusted distribution partners across key global markets
         </ul>
       </div>
 
-      <!-- CONTACT -->
-      <div class="col-lg-4 col-md-12">
-        <h5 class="footer-title">
-          <i class="fa-solid fa-phone"></i> Contact Us
-        </h5>
-        <ul class="footer-contact">
-          <li><i class="fa-solid fa-phone"></i> +91 98455 26313</li>
-          <li><i class="fa-solid fa-envelope"></i> info@ehtwatertanks.com</li>
-          <li><i class="fa-solid fa-location-dot"></i> Bangalore, Karnataka, India</li>
-        </ul>
-      </div>
+   <!-- CONTACT -->
+<div class="col-lg-4 col-md-12">
+  <h5 class="footer-title">
+    <i class="fa-solid fa-phone"></i> Contact Us
+  </h5>
+
+  <ul class="footer-contact">
+<li>
+  <i class="fa-solid fa-phone"></i>
+  <a href="tel:+919845526313" class="text-decoration-none text-white">
+    +91 98455 26313
+  </a>
+</li>
+    <li><i class="fa-solid fa-envelope"></i> info@ehtwatertanks.com</li>
+    <li><i class="fa-solid fa-location-dot"></i> Bangalore, Karnataka, India</li>
+  </ul>
+
+  <!-- SOCIAL LINKS -->
+  <div class="footer-social mt-3">
+    <a href="https://www.linkedin.com/company/eht-water-tanks/"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="EHT Water Tanks LinkedIn">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+
+    <a href="https://www.facebook.com/"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="EHT Water Tanks Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+  </div>
+</div>
 
     </div>
   </div>
@@ -2098,7 +2368,7 @@ Trusted distribution partners across key global markets
   <div class="footer-bottom">
     <div class="container text-center text-white">
       <p>
-        © 2025 <strong>EHT Water Tanks Pvt. Ltd.</strong> All Rights Reserved.<br>
+        © 2025 <strong>EHT WATER TANKS PRIVATE LIMITED</strong> All Rights Reserved.<br>
         Designed & Developed by <strong>DHK</strong>
       </p>
     </div>
@@ -2123,17 +2393,11 @@ AOS.init({
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-
 <script>
   
   AOS.init({ once: true });
 </script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siqeb63ecd25dcb22752772304fa76c14db230aa5ab6c02b4b96cba065a0e6fe9b1" defer></script>
 
 <script>
   /* INIT MAP */
@@ -2301,7 +2565,122 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 </script>
 
-<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siqeb63ecd25dcb22752772304fa76c14db230aa5ab6c02b4b96cba065a0e6fe9b1" defer></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+/* ===========================
+   COUNTRY & STATE DATA
+=========================== */
+const data = {
+  "India": [
+    "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa",
+    "Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala",
+    "Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland",
+    "Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura",
+    "Uttar Pradesh","Uttarakhand","West Bengal",
+    "Andaman and Nicobar Islands","Chandigarh","Delhi","Jammu and Kashmir",
+    "Ladakh","Lakshadweep","Puducherry"
+  ],
+  "United States": [
+    "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
+    "Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa",
+    "Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan",
+    "Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada",
+    "New Hampshire","New Jersey","New Mexico","New York","North Carolina",
+    "North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island",
+    "South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont",
+    "Virginia","Washington","West Virginia","Wisconsin","Wyoming"
+  ],
+  "Canada": [
+    "Alberta","British Columbia","Manitoba","New Brunswick",
+    "Newfoundland and Labrador","Nova Scotia","Ontario",
+    "Prince Edward Island","Quebec","Saskatchewan"
+  ],
+  "Australia": [
+    "New South Wales","Victoria","Queensland","Western Australia",
+    "South Australia","Tasmania","Australian Capital Territory","Northern Territory"
+  ],
+  "United Kingdom": [
+    "England","Scotland","Wales","Northern Ireland"
+  ]
+};
+
+/* ===========================
+   INIT SELECT2
+=========================== */
+$(document).ready(function () {
+
+  $('#country, #state').select2({
+    placeholder: "Select",
+    allowClear: true,
+    width: '100%'
+  });
+
+  // Load countries
+  Object.keys(data).sort().forEach(country => {
+    $('#country').append(new Option(country, country));
+  });
+
+  // Country → State dependency
+  $('#country').on('change', function () {
+    const selectedCountry = $(this).val();
+    $('#state').empty().append('<option></option>').prop('disabled', true);
+
+    if (selectedCountry && data[selectedCountry]) {
+      data[selectedCountry].forEach(state => {
+        $('#state').append(new Option(state, state));
+      });
+      $('#state').prop('disabled', false);
+    }
+
+    $('#state').val(null).trigger('change');
+  });
+
+  /* ===========================
+     AUTO-DETECT COUNTRY & STATE
+  =========================== */
+  fetch("https://ipapi.co/json/")
+    .then(res => res.json())
+    .then(location => {
+
+      const detectedCountry = location.country_name;
+      const detectedState = location.region;
+
+      if (detectedCountry && data[detectedCountry]) {
+        $('#country').val(detectedCountry).trigger('change');
+
+        setTimeout(() => {
+          if (detectedState && data[detectedCountry].includes(detectedState)) {
+            $('#state').val(detectedState).trigger('change');
+          }
+        }, 300);
+      }
+    })
+    .catch(() => {
+      console.log("Auto-detection failed — manual selection enabled.");
+    });
+
+});
+</script>
+
+<style>
+.select2-container--default .select2-selection--single {
+  height: 45px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.select2-selection__rendered {
+  line-height: 28px !important;
+}
+.select2-selection__arrow {
+  height: 45px !important;
+}
+</style>
 
 
 </body>
